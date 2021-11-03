@@ -1,0 +1,28 @@
+{
+  "name": "Proyecto-Final",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"start:dev": "npx nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JCamposx/Proyecto-PW.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JCamposx/Proyecto-PW/issues"
+  },
+  "homepage": "https://github.com/JCamposx/Proyecto-PW#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
+}
