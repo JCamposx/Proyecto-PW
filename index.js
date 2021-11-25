@@ -37,8 +37,74 @@ app.get('/partidas', (req, res) => {
 
 //* NUEVA PARTIDA
 
-app.get('/partidas/nuevo', (req, res) => {
-	res.render('partidas_nuevo')
+app.get('/partidas/nuevo', async (req, res) => {
+	const categorias = await db.Categoria.findAll({
+		order: [
+			['id']
+		]
+	})
+
+	res.render('partidas_nuevo', {
+		categorias: categorias
+	})
+})
+
+app.post('/partidas/nuevo', async (req, res) => {
+	const id_cat = req.body.categoria
+	
+	res.redirect(`/partidas/nuevo/${id_cat}`)
+})
+
+app.get('/partidas/nuevo/:id_cat', async (req, res) => {
+	const id_categoria = req.params.id_cat
+
+	const categoria = await db.Categoria.findOne({
+		where: {
+			id: id_categoria
+		}
+	})
+
+	console.log(categoria.nombre_cat)
+
+	const juegos = await db.Juego.findAll({
+		where: {
+			id_categoria: id_categoria
+		},
+		order: [
+			['id']
+		]
+	})
+
+	res.render('partidas_nuevo_jue', {
+		categoria: categoria,
+		juegos: juegos
+	})
+})
+
+app.post('/partidas/nuevo/:id_cat', (req, res) => {
+	const id_cat = req.params.id_cat
+	const id_juego = req.body.juego
+
+	res.redirect(`/partidas/nuevo/${id_cat}/${id_juego}`)
+})
+
+app.get('/partidas/nuevo/:id_cat/:id_jue', async (req, res) => {
+	const id_categoria = req.params.id_cat
+	const id_juego = req.params.id_jue
+
+	const categoria = await db.Categoria.findOne({
+		where: {
+			id: id_categoria
+		}
+	})
+
+	const juego = await db.Juego.findOne({
+		where: {
+			id: id_juego
+		}
+	})
+
+	res.render()
 })
 
 ////////////////////////////////////////////////////////////////////////////////////////

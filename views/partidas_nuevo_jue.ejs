@@ -21,19 +21,15 @@
 				<h1>Nueva partida</h1>
 			</div>
 
-			<form method="post" action="/partidas/nuevo">
+			<form method="post" action="/partidas/nuevo/<%= categoria.id %>">
 				<div class="row mb-4">
 					<div class="col-4">
 						<h4>Categoría</h4>
 					</div>
 
 					<div class="col-8">
-						<select name="categoria" id="categoria" class="form-select" required>
-							<option id="categoria_dis" value="-1">--- Categoria de juego ---</option>
-							
-							<% categorias.forEach(categoria => { %>
-								<option value="<%= categoria.id %>"><%= categoria.nombre_cat %></option>
-							<% }) %>
+						<select name="categoria" id="categoria" class="form-select" disabled>
+							<option value="<%= categoria.id %>" selected><%= categoria.nombre_cat %></option>
 						</select>
 					</div>
 				</div>
@@ -44,8 +40,12 @@
 					</div>
 
 					<div class="col-8">
-						<select name="juego" id="juego" class="form-select" disabled>
+						<select name="juego" id="juego" class="form-select">
 							<option id="juego_dis" value="-1">--- Juego ---</option>
+						
+							<% juegos.forEach(juego => { %>
+								<option value="<%= juego.id %>"><%= juego.nombre_jue %></option>
+							<% }) %>
 						</select>
 					</div>
 				</div>
@@ -140,7 +140,7 @@
 					<div class="col">
 						<button id="submit" type="submit" class="btn btn-success disabled">Siguiente</button>
 
-						<a href="/partidas" class="btn btn-outline-secondary ms-3">Cancelar</a>
+						<a href="/partidas/nuevo" class="btn btn-outline-secondary ms-3">Regresar</a>
 					</div>
 				</div>
 			</form>
