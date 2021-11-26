@@ -21,7 +21,7 @@
 				<h1>Nueva partida</h1>
 			</div>
 
-			<form method="post" action="/partidas/nuevo/<%= categoria.id %>">
+			<form method="post" action="/partidas/nuevo/<%= categoria.id %>/<%= juego.id %> ">
 				<div class="row mb-4">
 					<div class="col-4">
 						<h4>Categoría</h4>
@@ -40,12 +40,8 @@
 					</div>
 
 					<div class="col-8">
-						<select name="juego" id="juego" class="form-select">
-							<option id="juego_dis" value="-1">--- Juego ---</option>
-						
-							<% juegos.forEach(juego => { %>
-								<option value="<%= juego.id %>"><%= juego.nombre_jue %></option>
-							<% }) %>
+						<select name="juego" id="juego" class="form-select" disabled>
+							<option value="<%= juego.id %>" selected><%= juego.nombre_jue %></option>
 						</select>
 					</div>
 				</div>
@@ -57,8 +53,12 @@
 
 					<div class="col-8 row">
 						<div class="col-5">
-							<select name="local" id="local" class="form-select" disabled>
-								<option value="-1" selected>--- Equipo local ---</option>
+							<select name="local" id="local" class="form-select" required>
+								<option id="local_dis" value="-1" selected>--- Equipo local ---</option>
+
+								<% equipos_en_juego.forEach(ej => { %>
+									<option value="<%= ej.id %>"><%= ej.nombre %></option>
+								<% }) %>
 							</select>
 						</div>
 
@@ -67,8 +67,12 @@
 						</div>
 
 						<div class="col-5">
-							<select name="visitante" id="visitante" class="form-select" disabled>
+							<select name="visitante" id="visitante" class="form-select" required>
 								<option id="visitante_dis" value="-1" selected>--- Equipo visitante ---</option>
+
+								<% equipos_en_juego.forEach(ej => { %>
+									<option value="<%= ej.id %>"><%= ej.nombre %></option>
+								<% }) %>
 							</select>
 						</div>
 					</div>
@@ -81,13 +85,13 @@
 
 					<div class="col-8 row">
 						<div class="col-4">
-							<input name="f_local" type="number" min="0.1" step="0.1" class="form-control" placeholder="Factor local" disabled/>
+							<input name="f_local" type="number" min="0.1" step="0.1" class="form-control" placeholder="Factor local" required/>
 						</div>
 						<div class="col-4">
-							<input name="f_empate" type="number" min="0.1" step="0.1" class="form-control" placeholder="Factor empate" disabled/>
+							<input name="f_empate" type="number" min="0.1" step="0.1" class="form-control" placeholder="Factor empate" required/>
 						</div>
 						<div class="col-4">
-							<input name="f_visitante" type="number" min="0.1" step="0.1" class="form-control" placeholder="Factor visitante" disabled/>
+							<input name="f_visitante" type="number" min="0.1" step="0.1" class="form-control" placeholder="Factor visitante" required/>
 						</div>
 					</div>
 				</div>
@@ -98,7 +102,7 @@
 					</div>
 
 					<div class="col-8">
-						<input name="fecha" type="date" class="form-control" disabled/>
+						<input name="fecha" type="date" class="form-control" required/>
 					</div>
 				</div>
 
@@ -109,7 +113,7 @@
 
 					<div class="col-8 row">
 						<div class="col-4">
-							<input name="hora" type="number" min="0" max="23" class="form-control" placeholder="Hora" disabled/>
+							<input name="hora" type="number" min="0" max="23" class="form-control" placeholder="Hora" required/>
 						</div>
 
 						<div class="col-1 text-center centered">
@@ -117,7 +121,7 @@
 						</div>
 
 						<div class="col-4">
-							<input name="minutos" type="number" min="0" max="59" class="form-control" placeholder="Minutos" disabled/>
+							<input name="minutos" type="number" min="0" max="59" class="form-control" placeholder="Minutos" required/>
 						</div>
 
 						<div class="col-2 centered">
@@ -133,7 +137,7 @@
 
 					<div class="col-8 row">
 						<div class="col-4">
-							<input name="duracion" type="number" min="0" class="form-control" placeholder="Duración" disabled/>
+							<input name="duracion" type="number" min="0" class="form-control" placeholder="Duración" required/>
 						</div>
 
 						<div class="col-2 centered">
@@ -148,12 +152,12 @@
 					</div>
 
 					<div class="col-8">
-						<select name="estado" id="estado" class="form-select" disabled>
+						<select name="estado" id="estado" class="form-select" required>
 							<option id="estado_dis" value="-1" selected>--- Estado ---</option>
 							<option value="0">Pendiente</option>
 							<option value="1">Iniciado</option>
 							<option value="2">Finalizado</option>
-						  </select>
+						</select>
 					</div>
 				</div>
 
@@ -163,7 +167,7 @@
 					</div>
 
 					<div class="col-8">
-						<select name="resultado" id="resultado" class="form-select" disabled>
+						<select name="resultado" id="resultado" class="form-select" required>
 							<option id="resultado_dis" value="-1" selected>--- Resultado ---</option>
 							<option value="0">Pendiente</option>
 							<option value="1">Victoria local</option>
@@ -177,7 +181,7 @@
 					<div class="col">
 						<button id="submit" type="submit" class="btn btn-success disabled">Siguiente</button>
 
-						<a href="/partidas/nuevo" class="btn btn-outline-secondary ms-3">Regresar</a>
+						<a href="/partidas/nuevo/<%= categoria.id %>" class="btn btn-outline-secondary ms-3">Regresar</a>
 					</div>
 				</div>
 			</form>

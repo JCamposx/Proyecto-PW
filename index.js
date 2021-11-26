@@ -29,8 +29,54 @@ app.get('/', (req, res) => {
 
 //* LISTA DE PARTIDAS
 
-app.get('/partidas', (req, res) => {
-	res.render('partidas')
+app.get('/partidas', async (req, res) => {
+	const partidas = await db.Partida.findAll({
+		order: [
+			['fecha']
+		]
+	})
+
+	const lista_juegos = []
+	const lista_categorias = []
+	const lista_equipos = []
+
+	if (partidas.length >= 0) {
+		for (let partida of partidas) {
+			const juego = await partida.getJuego()
+			lista_juegos.push(juego)
+
+			const categoria = await db.Categoria.findOne({
+				where: {
+					id: juego.id_categoria
+				}
+			})
+
+			lista_categorias.push(categoria)
+
+			const partida_equipo = await db.Partida_Equipo.findAll({
+				where: {
+					id_partida: partida.id
+				}
+			})
+
+			const local = await partida_equipo[0].getEquipo()
+			const visitante = await partida_equipo[1].getEquipo()
+			
+			const equipos = {
+				local: local,
+				visitante: visitante
+			}
+
+			lista_equipos.push(equipos)
+		}
+	}
+
+	res.render('partidas', {
+		partidas: partidas,
+		juegos: lista_juegos,
+		categorias: lista_categorias,
+		equipos: lista_equipos
+	})
 })
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -63,8 +109,6 @@ app.get('/partidas/nuevo/:id_cat', async (req, res) => {
 			id: id_categoria
 		}
 	})
-
-	console.log(categoria.nombre_cat)
 
 	const juegos = await db.Juego.findAll({
 		where: {
@@ -104,10 +148,75 @@ app.get('/partidas/nuevo/:id_cat/:id_jue', async (req, res) => {
 		}
 	})
 
-	res.render()
+	const juego_equipos = await db.Juego_Equipo.findAll({
+		where: {
+			id_juego: id_juego
+		},
+		order: [
+			['id']
+		]
+	})
+
+	const equipos_en_juego = []
+	for (let juego_equipo of juego_equipos) {
+		const equipo = await juego_equipo.getEquipo()
+		equipos_en_juego.push(equipo)
+	}
+
+	res.render('partidas_nuevo_equ', {
+		categoria: categoria,
+		juego: juego,
+		equipos_en_juego: equipos_en_juego
+	})
 })
 
-////////////////////////////////////////////////////////////////////////////////////////
+app.post('/partidas/nuevo/:id_cat/:id_jue', async (req, res) => {
+	const id_juego = req.params.id_jue
+
+	const id_local = req.body.local
+	const id_visitante = req.body.visitante
+	const factor_local = req.body.f_local
+	const factor_empate = req.body.f_empate
+	const factor_visitante = req.body.f_visitante
+	const fecha = req.body.fecha
+	const hora = req.body.hora
+	const minutos = req.body.minutos
+	const duracion = req.body.duracion
+	const estado = req.body.estado
+	const resultado = req.body.resultado
+
+	const fecha_arr = fecha.split('-')
+	const nueva_fecha = new Date(parseInt(fecha_arr[0]), parseInt(fecha_arr[1])-1, parseInt(fecha_arr[2]))
+	nueva_fecha.setHours(parseInt(hora), parseInt(minutos))
+
+	const partida_nueva = await db.Partida.create({
+		fecha: nueva_fecha,
+		hora_inicio: hora + ':' + minutos,
+		duracion: duracion,
+		factor_local: factor_local,
+		factor_visita: factor_visitante,
+		factor_empate: factor_empate,
+		resultado: resultado,
+		estado: estado,
+		id_local: id_local,
+		id_visita: id_visitante,
+		id_juego: id_juego
+	})
+
+	db.Partida_Equipo.create({
+		id_partida: partida_nueva.id,
+		id_equipo: id_local
+	})
+
+	db.Partida_Equipo.create({
+		id_partida: partida_nueva.id,
+		id_equipo: id_visitante
+	})
+
+	res.redirect('/partidas')
+})
+
+///////////////////////////////////////////////////////////////////////////////////////5
 
 app.listen(PORT, () => {
 	console.log(`Se ha inicializado el servidor en el puerto ${PORT}`)

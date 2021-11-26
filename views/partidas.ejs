@@ -26,56 +26,77 @@
 				</div>
 			</div>
 
+			<% for (let i = 0; i < partidas.length; i++) { %>
 			<div class="card mb-3 pt-3">
-				<div class="card-body">
-					<div class="row">
-						<div class="col-md-6 mb-2">
-							<div class="mb-3">
-								<h4 class="card-title">Equipo A vs Equipo B</h4>
-							</div>
-							
-							<div class="row">
-								<div class="col-5">
-									<b>Deporte:</b> Futbol</br>
-									<b>Fecha: </b> 02/11/2021</br>
-									<b>Duración: </b> 90 minutos</br>
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-6 mb-2">
+								<div class="mb-3">
+									<h4 class="card-title"><%= equipos[i].local.nombre %> vs <%= equipos[i].visitante.nombre %></h4>
 								</div>
-
-								<div class="col-7">
-									<b>Campeonato:</b> UEFA Champions League</br>
-									<b>Hora:</b> 14:00</br>
-									<b>Estado:</b> Finalizado</br>
+								
+								<div class="row">
+									<div class="col-5">
+										<b>Categoría:</b> <%= categorias[i].nombre_cat %></br>
+										<b>Fecha: </b> <%= partidas[i].fecha.toISOString().substring(0,10) %></br>
+										<b>Duración: </b> <%= partidas[i].duracion %> minutos</br>
+										<b>Resultado: </b>
+										<% if (partidas[i].resultado == 0) { %>
+											Pendiente
+										<% } else if (partidas[i].resultado == 1) { %>
+											Victoria local
+										<% } else if (partidas[i].resultado == 2) { %>
+											Empate
+										<% } else { %>
+											Victoria visitante
+										<% } %>
+										</br>
+									</div>
+	
+									<div class="col-7">
+										<b>Juego:</b> <%= juegos[i].nombre_jue %> </br>
+										<b>Hora:</b> <%= partidas[i].hora_inicio %> </br>
+										<b>Estado:</b>
+										<% if (partidas[i].estado == 0) { %>
+											Pendiente
+										<% } else if (partida[i].estado == 1) { %>
+											Iniciado
+										<% } else { %>
+											Finalizado
+										<% } %>
+										</br>
+									</div>
 								</div>
 							</div>
-						</div>
-
-						<div class="col-md-4 centered">
-							<table class="table table-bordered">
-								<tbody>
-									<tr>
-										<td class="ps-4">Equipo A</td>
-										<td class="text-center">1.5</td>
-									</tr>
-
-									<tr>
-										<td class="ps-4">Empate</td>
-										<td class="text-center">1.9</td>
-									</tr>
-
-									<tr>
-										<td class="ps-4">Equipo B</td>
-										<td class="text-center">2.8</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-
-						<div class="col-md centered">
-							<a href="#" class="btn btn-dark">Editar</a>
+	
+							<div class="col-md-4 centered">
+								<table class="table table-bordered">
+									<tbody>
+										<tr>
+											<td class="ps-4"><%= equipos[i].local.nombre %></td>
+											<td class="text-center"><%= partidas[i].factor_local %></td>
+										</tr>
+	
+										<tr>
+											<td class="ps-4">Empate</td>
+											<td class="text-center"><%= partidas[i].factor_empate %></td>
+										</tr>
+	
+										<tr>
+											<td class="ps-4"><%= equipos[i].visitante.nombre %></td>
+											<td class="text-center"><%= partidas[i].factor_visita %></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+	
+							<div class="col-md centered">
+								<a href="/partidas/editar/<%= partidas[i].id %>" class="btn btn-dark">Editar</a>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>			
+			<% } %>			
 		</div>
 
 		<!-- Footer -->

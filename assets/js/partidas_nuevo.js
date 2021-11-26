@@ -12,8 +12,9 @@ const verificar = (evt) => {
 	const local = document.getElementById('local').value
 	const visitante = document.getElementById('visitante').value
 	const estado = document.getElementById('estado').value
-
-	if (estado == -1) {
+	const resultado = document.getElementById('resultado').value
+	
+	if (estado == -1 || resultado == -1) {
 		deshabilitar_submit()
 	} else {
 		if (local != visitante && local != -1 && visitante != -1) {
@@ -40,7 +41,12 @@ const main = () => {
 
 	document.getElementById('local').addEventListener('change', verificar)
 	document.getElementById('visitante').addEventListener('change', verificar)
+
 	document.getElementById('estado').addEventListener('change', cambiar_estado)
+	document.getElementById('estado').addEventListener('change', verificar)
+
+	document.getElementById('resultado').addEventListener('change', cambiar_estado)
+	document.getElementById('resultado').addEventListener('change', verificar)
 }
 
 window.addEventListener('load', main)

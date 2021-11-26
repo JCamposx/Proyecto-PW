@@ -76,6 +76,24 @@
 
 				<div class="row mb-4">
 					<div class="col-4">
+						<h4>Factores</h4>
+					</div>
+
+					<div class="col-8 row">
+						<div class="col-4">
+							<input name="f_local" type="number" min="0.1" step="0.1" class="form-control" placeholder="Factor local" disabled/>
+						</div>
+						<div class="col-4">
+							<input name="f_empate" type="number" min="0.1" step="0.1" class="form-control" placeholder="Factor empate" disabled/>
+						</div>
+						<div class="col-4">
+							<input name="f_visitante" type="number" min="0.1" step="0.1" class="form-control" placeholder="Factor visitante" disabled/>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mb-4">
+					<div class="col-4">
 						<h4>Fecha</h4>
 					</div>
 
@@ -115,7 +133,7 @@
 
 					<div class="col-8 row">
 						<div class="col-4">
-							<input type="number" min="0" class="form-control" disabled/>
+							<input name="duracion" type="number" min="0" class="form-control" placeholder="Duración" disabled/>
 						</div>
 
 						<div class="col-2 centered">
@@ -130,9 +148,28 @@
 					</div>
 
 					<div class="col-8">
-						<select id="estado" class="form-select" aria-label="Default select example" disabled>
-							<option id="estado_dis" value="-1" selected>--- Elija una opción ---</option>
+						<select name="estado" id="estado" class="form-select" disabled>
+							<option id="estado_dis" value="-1" selected>--- Estado ---</option>
+							<option value="0">Pendiente</option>
+							<option value="1">Iniciado</option>
+							<option value="2">Finalizado</option>
 						  </select>
+					</div>
+				</div>
+
+				<div class="row mb-4">
+					<div class="col-4">
+						<h4>Resultado</h4>
+					</div>
+
+					<div class="col-8">
+						<select name="resultado" id="resultado" class="form-select" disabled>
+							<option id="resultado_dis" value="-1" selected>--- Resultado ---</option>
+							<option value="0">Pendiente</option>
+							<option value="1">Victoria local</option>
+							<option value="2">Empate</option>
+							<option value="3">Victoria visitante</option>
+						</select>
 					</div>
 				</div>
 
