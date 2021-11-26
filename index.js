@@ -64,8 +64,15 @@ app.post('/cliente/new',async(req,res)=>{
 				direccion: ClienteDir,
 				esPEP: ClientePEP
 			})
-			res.redirect('/Espera')
+			res.redirect('/cliente/espera')
 	
+})
+app.get('/cliente/espera',(req,res)=>{
+	res.render('cliente_espera')
+})
+app.post('/cliente/espera',(req,res)=>{
+	req.session.destroy()
+	res.redirect('/')
 })
 ////////////////////////////////////////////////////////////////////////////////////////
 
