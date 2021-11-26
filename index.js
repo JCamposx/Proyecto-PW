@@ -179,8 +179,8 @@ app.post('/partidas/nuevo/:id_cat/:id_jue', async (req, res) => {
 	const factor_empate = req.body.f_empate
 	const factor_visitante = req.body.f_visitante
 	const fecha = req.body.fecha
-	const hora = req.body.hora
-	const minutos = req.body.minutos
+	let hora = req.body.hora
+	let minutos = req.body.minutos
 	const duracion = req.body.duracion
 	const estado = req.body.estado
 	const resultado = req.body.resultado
@@ -188,6 +188,14 @@ app.post('/partidas/nuevo/:id_cat/:id_jue', async (req, res) => {
 	const fecha_arr = fecha.split('-')
 	const nueva_fecha = new Date(parseInt(fecha_arr[0]), parseInt(fecha_arr[1])-1, parseInt(fecha_arr[2]))
 	nueva_fecha.setHours(parseInt(hora), parseInt(minutos))
+
+	if (hora.length == 1) {
+		hora = '0' + hora
+	}
+
+	if (minutos.length == 1) {
+		minutos = '0' + minutos
+	}
 
 	const partida_nueva = await db.Partida.create({
 		fecha: nueva_fecha,
@@ -214,6 +222,60 @@ app.post('/partidas/nuevo/:id_cat/:id_jue', async (req, res) => {
 	})
 
 	res.redirect('/partidas')
+})
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+//* EDITAR PARTIDA
+
+app.get('/partidas/editar/:id_partida', async (req, res) => {
+	const id_partida = req.params.id_partida
+	
+	const partida = await db.Partida.findOne({
+		where: {
+			id: id_partida
+		}
+	})
+
+	console.log(parseInt(partida.hora_inicio))
+	console.log(parseInt(partida.hora_inicio.substring(3,5)))
+
+	console.log(parseInt(partida.duracion))
+	
+	const juego = await db.Juego.findOne({
+		where: {
+			id: partida.id_juego
+		}
+	})
+
+	const categoria = await db.Categoria.findOne({
+		where: {
+			id: juego.id_categoria
+		}
+	})
+
+	const juego_equipos = await db.Juego_Equipo.findAll({
+		where: {
+			id_juego: juego.id
+		},
+		order: [
+			['id']
+		]
+	})
+
+	const equipos_en_juego = []
+	for (let juego_equipo of juego_equipos) {
+		const equipo = await juego_equipo.getEquipo()
+		equipos_en_juego.push(equipo)
+	}
+
+	res.render('partidas_editar', {
+		partida: partida,
+		juego: juego,
+		categoria: categoria,
+		equipos_en_juego: equipos_en_juego
+	})
+
 })
 
 ///////////////////////////////////////////////////////////////////////////////////////5
