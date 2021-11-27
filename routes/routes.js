@@ -11,6 +11,7 @@ router.use(require('./banners_nuevo'))
 router.use(require('./banners_modificar'))
 router.use(require('./banners_eliminar'))
 
+
 router.get('/', (req, res) => {
 	res.send('HOLA MUNDO')
 })

@@ -4,7 +4,7 @@ const db = require('../dao/models')
 
 //* Modificar-UPDATE banners
 router.get('/banners/modificar/:codigo', async (req, res) => {
-    const idBanners = req.params.codigo
+    const idBanner = req.params.codigo
 
     const banner = await db.Banner.findOne({
         where : {
@@ -17,7 +17,7 @@ router.get('/banners/modificar/:codigo', async (req, res) => {
     })
 })
 
-router.post('/juegos/modificar', async (req, res) => {
+router.post('/banners/modificar', async (req, res) => {
     const idBanner = req.body.banner_id
     const nombre = req.body.banner_nombre
     const imagen = req.body.banner_imagen

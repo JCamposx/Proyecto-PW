@@ -19,7 +19,7 @@ router.post('/banners/new', (req, res) => {
         nombre : bannerNombre,
         imagen : bannerImagen,
         url : bannerUrl,
-        estado : bannerEstado,
+        estado : bannerEstado
         
     })
 
