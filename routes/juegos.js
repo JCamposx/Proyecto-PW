@@ -13,19 +13,19 @@ router.get('/juegos', async (req, res)=> {
         ]
     });    
     console.log(juegos)
-    var nuevaListaJuegos = []
+    let nuevaListaJuegos = []
     for (let juego of juegos ){
         const categoria = await juego.getCategoria()
         nuevaListaJuegos.push({
             id: juego.id,
             nombre: juego.nombre_jue,
-            categoriaNombre  : categoria.nombre
+            categoriaNombre  : categoria.nombre_cat
         })
     }
-    
+    console.log(nuevaListaJuegos)
     
     res.render('juegos', {
-        juegos :  nuevaListaJuegos
+        juegos : nuevaListaJuegos
     })
 }
 )
