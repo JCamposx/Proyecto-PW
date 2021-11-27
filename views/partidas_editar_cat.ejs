@@ -18,10 +18,10 @@
 		<!-- Contenido -->
 		<div class="container">
 			<div class="mb-3">
-				<h1>Nueva partida</h1>
+				<h1>Editar partida N°<%= id_partida %></h1>
 			</div>
 
-			<form method="post" action="/partidas/nuevo">
+			<form method="post" action="/partidas/editar/<%= id_partida %>%>/categoria/<%= id_categoria %>">
 				<div class="row mb-4">
 					<div class="col-4">
 						<h4>Categoría</h4>
@@ -29,10 +29,13 @@
 
 					<div class="col-8">
 						<select name="categoria" id="categoria" class="form-select" required>
-							<option id="categoria_dis" value="-1">--- Categoria de juego ---</option>
-							
+							<option id="categoria_dis" value="-1" disabled>--- Juego ---</option>
 							<% categorias.forEach(categoria => { %>
-								<option value="<%= categoria.id %>"><%= categoria.nombre_cat %></option>
+								<% if (categoria.id == id_categoria) { %>
+									<option value="<%= categoria.id %>" selected><%= categoria.nombre_cat %></option>
+								<% } else { %>
+									<option value="<%= categoria.id %>"><%= categoria.nombre_cat %></option>
+								<% } %>
 							<% }) %>
 						</select>
 					</div>
@@ -45,7 +48,7 @@
 
 					<div class="col-8">
 						<select name="juego" id="juego" class="form-select" disabled>
-							<option id="juego_dis" value="-1">--- Juego ---</option>
+							<option value="-1" selected>--- Juego ---</option>
 						</select>
 					</div>
 				</div>
@@ -150,10 +153,7 @@
 					<div class="col-8">
 						<select name="estado" id="estado" class="form-select" disabled>
 							<option id="estado_dis" value="-1" selected>--- Estado ---</option>
-							<option value="0">Pendiente</option>
-							<option value="1">Iniciado</option>
-							<option value="2">Finalizado</option>
-						  </select>
+						</select>
 					</div>
 				</div>
 
@@ -165,19 +165,15 @@
 					<div class="col-8">
 						<select name="resultado" id="resultado" class="form-select" disabled>
 							<option id="resultado_dis" value="-1" selected>--- Resultado ---</option>
-							<option value="0">Pendiente</option>
-							<option value="1">Victoria local</option>
-							<option value="2">Empate</option>
-							<option value="3">Victoria visitante</option>
 						</select>
 					</div>
 				</div>
 
 				<div class="row mb-3 text-center">
 					<div class="col">
-						<button id="submit" type="submit" class="btn btn-success disabled">Siguiente</button>
+						<button id="submit" type="submit" class="btn btn-success">Siguiente</button>
 
-						<a href="/partidas" class="btn btn-outline-secondary ms-3">Cancelar</a>
+						<a href="/partidas/editar/<%= id_partida %>" class="btn btn-outline-secondary ms-3">Regresar</a>
 					</div>
 				</div>
 			</form>
