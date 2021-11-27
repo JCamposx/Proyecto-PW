@@ -18,7 +18,7 @@ router.get('/juegos', async (req, res)=> {
         const categoria = await juego.getCategoria()
         nuevaListaJuegos.push({
             id: juego.id,
-            nombre: juego.nombre,
+            nombre: juego.nombre_jue,
             categoriaNombre  : categoria.nombre
         })
     }
