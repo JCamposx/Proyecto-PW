@@ -16,6 +16,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Nombre</th>
+                    <th>Categoria</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -24,6 +25,7 @@
                     <tr>
                         <td><%= juego.id %></td>
                         <td><%= juego.nombre_jue %></td>
+                        <td><%= juego.categoriaNombre %></td>
                         <td>
                             <a href="/juegos/modificar/<%= juego.id %>" >Editar</a>
                             <a href="/juegos/eliminar/<%= juego.id %>" >Eliminar</a>

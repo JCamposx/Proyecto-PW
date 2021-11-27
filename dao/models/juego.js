@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Juego.init({
-    nombre_jue: DataTypes.STRING
+    nombre_jue: DataTypes.STRING,
+    id_categoria: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Juego',

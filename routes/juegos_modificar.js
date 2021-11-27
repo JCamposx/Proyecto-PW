@@ -29,6 +29,7 @@ router.post('/juegos/modificar', async (req, res) => {
     })
     
     juego.nombre_jue = nombre
+    
 
 
     await juego.save()

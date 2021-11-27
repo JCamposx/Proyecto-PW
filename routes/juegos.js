@@ -6,10 +6,26 @@ const db = require('../dao/models')
 
 //*Tabla principal de juegos, con opciones de editar,eliminar, crear nueo juego
 router.get('/juegos', async (req, res)=> {
+   
+    const juegos = await db.Juego.findAll({
+        order : [
+            ['id', 'DESC']
+        ]
+    });    
+    console.log(juegos)
+    var nuevaListaJuegos = []
+    for (let juego of juegos ){
+        const categoria = await juego.getCategoria()
+        nuevaListaJuegos.push({
+            id: juego.id,
+            nombre: juego.nombre,
+            categoriaNombre  : categoria.nombre
+        })
+    }
     
-    const juegos = await db.Juego.findAll();
+    
     res.render('juegos', {
-        juegos : juegos
+        juegos :  nuevaListaJuegos
     })
 }
 )
