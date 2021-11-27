@@ -1,9 +1,12 @@
-const {Router} = require('express')
 const express = require('express')
 const router = express.Router()
 const db = require('../dao/models')
 
 //* NUEVA PARTIDA
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Elegir categoria
 
 router.get('/partidas/nuevo', async (req, res) => {
 	const categorias = await db.Categoria.findAll({
@@ -22,6 +25,10 @@ router.post('/partidas/nuevo', async (req, res) => {
 	
 	res.redirect(`/partidas/nuevo/${id_cat}`)
 })
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Elegir juego
 
 router.get('/partidas/nuevo/:id_cat', async (req, res) => {
 	const id_categoria = req.params.id_cat
@@ -53,6 +60,10 @@ router.post('/partidas/nuevo/:id_cat', (req, res) => {
 
 	res.redirect(`/partidas/nuevo/${id_cat}/${id_juego}`)
 })
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Elegir equipos y demás
 
 router.get('/partidas/nuevo/:id_cat/:id_jue', async (req, res) => {
 	const id_categoria = req.params.id_cat
@@ -101,8 +112,8 @@ router.post('/partidas/nuevo/:id_cat/:id_jue', async (req, res) => {
 	const factor_empate = req.body.f_empate
 	const factor_visitante = req.body.f_visitante
 	const fecha = req.body.fecha
-	let hora = req.body.hora
-	let minutos = req.body.minutos
+	const hora = req.body.hora
+	const minutos = req.body.minutos
 	const duracion = req.body.duracion
 	const estado = req.body.estado
 	const resultado = req.body.resultado
