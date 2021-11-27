@@ -12,8 +12,11 @@ router.get('/juegos/modificar/:codigo', async (req, res) => {
         }
     })
 
+    const categorias = await db.Categoria.findAll()
+
     res.render('juegos_update', {
-        juego : juego
+        juego : juego,
+        categorias : categorias
     })
 })
 

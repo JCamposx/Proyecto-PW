@@ -19,7 +19,19 @@
                     class="form-control"
                     value="<%= juego.nombre_jue %>" />
             </div>
-
+            <div>
+                <label class="form-label">Categoria:</label>
+                <select name="juego_categoria_id" class="form-select">
+                    <option value="-1">----- Seleccione una opción -----</option>
+                    <% categorias.forEach( (tipo)=> { %>
+                        <% if (tipo.id == juego.id_categoria)  { %>
+                            <option selected value="<%= tipo.id%>"><%= tipo.nombre_cat %></option>
+                        <% }else { %>
+                            <option value="<%= tipo.id%>"><%= tipo.nombre_cat %></option>
+                        <% } %>
+                    <% }) %>
+                </select>
+            </div>
             <button type="submit" class="btn btn-success">Guardar</button>
         </form>
 
