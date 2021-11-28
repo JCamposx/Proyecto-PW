@@ -9,6 +9,7 @@
         <table class="table">
             <thead>
               <tr>
+                <th scope="col">Id</th>
                 <th scope="col">Fecha</th>
                 <th scope="col">Hora</th>
                 <th scope="col">Número</th>
@@ -19,27 +20,28 @@
                 <th scope="col">Equipo Apostado</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Monto Apostado</th>
+                <th scope="col">Factor</th>
                 <th scope="col">Resultado</th>
               </tr>
             </thead>
             <tbody>
+              <% partidas.forEach(function(partidas){%>
               <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <th scope="row"><%= partidas.id %></th>
+                <td><%=partidas.fecha %></td>
+                <td><%=partidas.hora %></td>
+                <td><%=partidas.numero %></td>
+                <td><%=partidas.equipoa %></td>
+                <td><%=partidas.equipob %></td>
+                <td><%=partidas.categoria %></td>
+                <td><%=partidas.juego %></td>
+                <td><%=partidas.equipoapostado %></td>
+                <td><%=partidas.estado %></td>
+                <td><%=partidas.monto %></td>
+                <td><%=partidas.factor %></td>
+                <td><%= (partidas.monto)*(partidas.factor) %></td>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
+              <%  });%>
             </tbody>
           </table>
     </body>

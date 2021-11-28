@@ -6,8 +6,30 @@ const ejs=require('ejs')
 const path= require('path')
 const Cliente=require('./dao/models/cliente')
 
+//partidas.id 
+const partidas =[{
+	id:1,fecha:"12/10/21",hora:"12 am",numero:1,
+	equipoa: "A", equipob:"B",
+	categoria: "primera",
+	juego:"primera ronda", equipoapostado:"A",
+	estado:"ganada",
+	monto:15,factor:2,resultado:15
 
-const clientes =[];
+	
+},{id:2,fecha:"12/10/21",hora:"12 am",numero:1,
+equipoa: "A", equipob:"B",
+categoria: "primera",
+juego:"primera ronda", equipoapostado:"A",
+estado:"pendiente",
+monto:15,factor:1,resultado:15},
+{
+	id:3,fecha:"12/10/21",hora:"12 am",numero:1,
+	equipoa: "A", equipob:"B",
+	categoria: "primera",
+	juego:"primera ronda", equipoapostado:"A",
+	estado:"perdida",
+	monto:15,factor:0,resultado:15
+}];
 
 const PORT = 5000
 const app = express()
@@ -44,6 +66,13 @@ app.post('/login',(req,res)=>{
 app.get('/menu',(req,res)=>{
 	res.render('menu')
 })
+
+//redireccion al menu de cliente
+app.get('/menucliente',(req,res)=>{
+	res.render('cliente_menu')
+})
+
+
 //cada que le das click a banner te redireccion a una pagina
 app.get('/banners',(req,res)=>{
 	res.render('banners')
@@ -63,7 +92,8 @@ app.get('/partidas',(req,res)=>{
 })
 //cada que entras como cliente te redireccion a una pagina
 app.get('/cliente',(req,res)=>{
-	res.render('cliente')
+
+	res.render('cliente_historial',{partidas:partidas})
 })
 
 
