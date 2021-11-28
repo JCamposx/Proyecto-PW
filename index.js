@@ -2,6 +2,7 @@ const express = require('express')
 const session = require('express-session')
 const bodyParser = require('body-parser')
 const db = require('./dao/models')
+const bcrypt=require("bcryptjs")
 
 const PORT = 5000
 const app = express()
@@ -36,12 +37,13 @@ app.post('/cliente/new',async(req,res)=>{
 	const ClienteDNI=req.body.cliente_DNI
 	const ClienteFoto=req.body.cliente_foto
 	const ClienteCorreo=req.body.cliente_correo
-	const ClienteCont=req.body.cliente_contraseña
 	const ClienteTelf=req.body.cliente_telefono
 	const ClienteDep=req.body.cliente_departamento
 	const ClienteProv=req.body.cliente_provincia
 	const ClienteDist=req.body.cliente_distrito
 	const ClienteDir=req.body.cliente_direccion
+	let contraseña=req.body.cliente_contraseña
+	
 	let PEPAux=0
 	if(req.body.cliente_PEP=="on"){
 		PEPAux=1
@@ -51,13 +53,21 @@ app.post('/cliente/new',async(req,res)=>{
 	}
 	const ClientePEP=PEPAux
 
-			await db.Cliente.create({
+	await bcrypt.hash(contraseña,5,async(err,contEncryptada)=>{
+		if(err){
+			console.log("Error encryptando: ",err);
+		}
+		else{
+			contraseña=contEncryptada
+			console.log(contEncryptada)
+			console.log(contraseña)
+		}			await db.Cliente.create({
 				nombre: ClienteNom,
 				apellidos: ClienteApp,
 				dni: ClienteDNI,
 				foto: ClienteFoto,
 				correo:ClienteCorreo,
-				contraseña: ClienteCont,
+				contraseña: contraseña,
 				telefono: ClienteTelf,
 				departamento: ClienteDep,
 				provincia: ClienteProv,
@@ -66,6 +76,9 @@ app.post('/cliente/new',async(req,res)=>{
 				esPEP: ClientePEP
 			})
 			res.redirect('/cliente/espera')
+	})
+	
+
 	
 })
 app.get('/cliente/espera',(req,res)=>{
