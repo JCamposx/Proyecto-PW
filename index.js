@@ -57,6 +57,10 @@ app.get('/juegos',(req,res)=>{
 app.get('/partidas',(req,res)=>{
 	res.render('partidas')
 })
+//cada que entras como cliente te redireccion a una pagina
+app.get('/cliente',(req,res)=>{
+	res.render('cliente')
+})
 
 
 
