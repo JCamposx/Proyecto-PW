@@ -5,7 +5,7 @@ const route = require('./routes/routes')
 
 const PORT = 5000
 const app = express()
-app.use(express.json())
+
 app.use(express.static('assets'))
 app.use(session({
 	secret: 'pw-123',

@@ -9,28 +9,20 @@
     <body class="container">
         <%- include('menu') %>
 
-        <h2>Mantenimiento de Juegos</h2>
-        <a class="btn btn-success" href="/juegos/new">Nuevo</a>
+        <h2>Filtro de Juegos</h2>
+        <a class="btn btn-success" href="/">Volver</a>
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Categoria</th>
-                    <th>Acciones</th>
+                    
                 </tr>
             </thead>
             <tbody>
-                <% juegos.forEach( (juego) => { %>
+                <% partidas.forEach( (partida) => { %>
                     <tr>
-                        <td><%= juego.id %></td>
-                        <td><%= juego.nombre_jue %></td>
-                        <td><%= juego.categoriaNombre %></td>
-                        <td>
-                            <a href="/juegos/modificar/<%= juego.id %>" >Editar</a>
-                            <a href="/juegos/eliminar/<%= juego.id %>" >Eliminar</a>
-                            <a href="/juegos/filtrar/<%= juego.id %>" >Filtrar</a>
-                        </td>
+                        <td><%= partida.id %></td>
+                        
                     </tr>
                 <% }) %>
             </tbody>
