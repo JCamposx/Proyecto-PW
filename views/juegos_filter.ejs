@@ -14,17 +14,21 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    
+                    <th>Id</th>                  
                 </tr>
             </thead>
             <tbody>
-                <% partidas.forEach( (partida) => { %>
-                    <tr>
-                        <td><%= partida.id %></td>
-                        
-                    </tr>
+                <tr>
+                <% partidass.forEach( (tipo)=> { %>
+                    <% if (tipo.id == juego.partida)  { %>
+                        <td  value="<%= tipo.id%>"><%= tipo.nombre %></td>
+                    <% }else { %>
+                        <td value="<%= tipo.id%>"><%= tipo.nombre %></td>
+                    <% } %>
                 <% }) %>
+
+                
+                
             </tbody>
         </table>
 
