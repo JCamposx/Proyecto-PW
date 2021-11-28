@@ -23,7 +23,7 @@ router.get('/juegos/modificar/:codigo', async (req, res) => {
 router.post('/juegos/modificar', async (req, res) => {
     const idJuego = req.body.juego_id
     const nombre =req.body.juego_nombre
-
+    const id_categoria = req.body.juego_categoria_id
 
     const juego = await db.Juego.findOne({
         where : {
@@ -32,7 +32,7 @@ router.post('/juegos/modificar', async (req, res) => {
     })
     
     juego.nombre_jue = nombre
-    
+    juego.id_categoria = id_categoria
 
 
     await juego.save()
