@@ -19,13 +19,11 @@
             </thead>
             <tbody>
                 <tr>
-                <% partidass.forEach( (tipo)=> { %>
-                    <% if (tipo.id == juego.partida)  { %>
+                <% partidas.forEach( (tipo)=> { %>
+                    
                         <td  value="<%= tipo.id%>"><%= tipo.nombre %></td>
-                    <% }else { %>
-                        <td value="<%= tipo.id%>"><%= tipo.nombre %></td>
-                    <% } %>
-                <% }) %>
+                <% } %>
+               
 
                 
                 
