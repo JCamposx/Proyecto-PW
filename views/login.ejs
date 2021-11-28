@@ -12,12 +12,17 @@
     <form method="POST" action="/login">
       <div class="mb-3">
         <label class="form-label">Username:</label>
-        <input class="form-control" type="text" name="username"/>
+        <input class="form-control" type="text" name="username" id="usuario"/>
       </div>
       <div class="mb-3">
         <label class="form-label">Password:</label>
-        <input class="form-control" type="password" name="password"/>
+        <input class="form-control" type="password" name="password" id="pass"/>
       </div>
+      <script>
+        if(document.getElementById('usuario').nodeValue=='us' && document.getElementById('pass').nodeValue=='ps'){
+          console.log('paso')
+        }
+      </script>
       <button type="submit" class="btn btn-primary">Login</button>
     </form>
 	</body>
