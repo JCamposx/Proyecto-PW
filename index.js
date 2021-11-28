@@ -42,13 +42,14 @@ app.post('/cliente/new',async(req,res)=>{
 	const ClienteProv=req.body.cliente_provincia
 	const ClienteDist=req.body.cliente_distrito
 	const ClienteDir=req.body.cliente_direccion
-	let ClientePEP=null
-	if(req.body.cliente_PEP==true){
-		ClientePEP=1
+	let PEPAux=0
+	if(req.body.cliente_PEP=="on"){
+		PEPAux=1
 	}
 	else{
-		ClientePEP=0
+		PEPAux=0
 	}
+	const ClientePEP=PEPAux
 
 			await db.Cliente.create({
 				nombre: ClienteNom,

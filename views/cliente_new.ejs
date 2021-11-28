@@ -7,13 +7,20 @@
         <script>
             var Departamento = {
               "Lima": {
-                 
+                 "Lima":["Lima","Ate","Surco"],
+                 "Barranca":["Barranca","Paramonga","Supe"],
+                 "Cañete":["San Luis","Chilca","Cerro Azul"]
+
               },
               "La Libertad": {
-                
+                "Trujillo":["Trujillo","Huanchaco","Laredo"],
+                "Bolivar":["Bolivar","Longotea","Ucuncha"],
+                "Pacasmayo":["Pacasmayo","Guadalupe","San José"]
               },
               "Ica":{
-                
+                "Ica":["Ica","Los Aquijes","Pueblo Nuevo"],
+                "Pisco":["Pisco","Huancano","Paracas"],
+                "Nazca":["Nazca","Marcona","Changuillo"]
               }
             }
             window.onload = function() {
@@ -91,9 +98,9 @@
     <header>        <title>Registración</title>
     </header>
     <body class="container">
+        <form method="post" action="/cliente/new">
     <div id=1>
         <h2>Paso 1</h2>
-        <form>
             <div>
                 <label class="form-label">Nombre:</label>
                 <input name="cliente_nombre" type="text" class="form-control" id="1div1"/>
@@ -103,12 +110,10 @@
                 <input name="cliente_apellido" type="text" class="form-control"id="1div2"/>
             </div>
             <a href="#" class="btn btn-success"onclick="VerificarVacio(1,2,2)">Siguiente</a>
-        </form>
         </div>
         
         <div id=2>
         <h2>Paso 2</h2>
-        <form>
             <div>
                 <label class="form-label">DNI:</label>
                 <input name="cliente_DNI" type="text" class="form-control" id="2div1"/>
@@ -120,13 +125,11 @@
             <a href="#" class="btn btn-success"onclick="showTab(2,1)">Anterior</a>
             <a href="#" class="btn btn-success"onclick="VerificarVacio(2,3,2)">Siguiente</a>
 
-        </form>
         </div>
 
         <div id=3>
 
         <h2>Paso 3</h2>
-        <form>
             <div>
                 <label class="form-label">Correo Electrónico:</label>
                 <input name="cliente_correo" type="text" class="form-control" id="3div1"/>
@@ -144,12 +147,12 @@
                 <input name="cliente_telefono" type="text" class="form-control" id="3div2"/>
             </div>
             <a href="#" class="btn btn-success"onclick="showTab(3,2)">Anterior</a>
-            <a href="#" class="btn btn-success"onclick="VerificarCont()">Siguiente</a>        </form>
+            <a href="#" class="btn btn-success"onclick="VerificarCont()">Siguiente</a>       
 		</div>
 
     <div id=4>
         <h2>Paso 4</h2>
-        <form>
+        
             <div>
                 Departamento:
                 <br><br>
@@ -177,12 +180,10 @@
             </div>
             <a href="#"class="btn btn-success" onclick="showTab(4,3)">Anterior</a>
             <a href="#"class="btn btn-success" onclick="VerificarVacio(4,5,1)">Siguiente</a>
-        </form>
     </div>
 
     <div id=5>
         <h2>Paso 5</h2>
-        <form method="post" action="/cliente/new">
             <div>
                 <label">¿Es persona políticamente expuesta?:</label>
                 <input name="cliente_PEP" type="checkbox"/>
@@ -190,8 +191,8 @@
             <a href="#" onclick="showTab(5,4)"class="btn btn-success">Anterior</a>
             <button type="submit" class="btn btn-success">Guardar</button>
             
-        </form>
     </div>
+</form>
     </body>
 
 
