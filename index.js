@@ -4,6 +4,10 @@ const bodyParser = require('body-parser')
 const db = require('./dao/models')
 const ejs=require('ejs')
 const path= require('path')
+const Cliente=require('./dao/models/cliente')
+
+
+const clientes =[];
 
 const PORT = 5000
 const app = express()
