@@ -3,8 +3,25 @@ const session = require('express-session')
 const bodyParser = require('body-parser')
 const db = require('./dao/models')
 const ejs=require('ejs')
+const { Client } = require('pg')
 const path= require('path')
 const Cliente=require('./dao/models/cliente')
+
+
+///conexio a base de datos postgres
+const connectionData = {
+	user: 'postgres',
+	host: "127.0.0.1",
+	database: 'postgres',
+	password: 'postgre',
+	port: 5432,
+  }
+  const client = new Client(connectionData)
+  client.connect()
+  console.log('se conecto')
+
+
+
 
 //partidas.id 
 const partidas =[{
@@ -30,6 +47,18 @@ monto:15,factor:1,resultado:15},
 	estado:"perdida",
 	monto:15,factor:0,resultado:15
 }];
+//juegos
+const juegos = [{
+	id:1,nombre:"U vs Alianza"
+},{
+	id:2,nombre:"atletico vs madrid"
+},
+{
+	id:3,nombre:"barcelona vs flamengo"
+},
+{
+	id:4,nombre:"cristal vs sport boys"
+}]
 
 const PORT = 5000
 const app = express()
@@ -69,7 +98,7 @@ app.get('/menu',(req,res)=>{
 
 //redireccion al menu de cliente
 app.get('/menucliente',(req,res)=>{
-	res.render('cliente_menu')
+	res.render('cliente_menu',{juegos:juegos})
 })
 
 
