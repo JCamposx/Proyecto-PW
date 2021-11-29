@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<link rel="stylesheet" href="/css/index.css">
+		<script src="/js/partidas.js"></script>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	</head>
+	
+	<body>
+		<!-- Barra de navegación -->
+		<%- include('navbar') %>
+
+		<!-- Contenido -->
+		<div class="container">
+			<div class="mb-3">
+				<h1>Editar partida N°<%= id_partida %></h1>
+			</div>
+
+			<form method="post" action="/partidas/editar/<%= id_partida %>/categoria/<%= id_categoria %>/editado">
+				<div class="row mb-4">
+					<div class="col-4">
+						<h4>Categoría</h4>
+					</div>
+
+					<div class="col-8">
+						<select name="categoria" id="categoria" class="form-select" disabled>
+							<option value="<%= categoria.id %>" selected><%= categoria.nombre_cat %></option>
+						</select>
+					</div>
+				</div>
+
+				<div class="row mb-4">
+					<div class="col-4">
+						<h4>Juego</h4>
+					</div>
+
+					<div class="col-8">
+						<select name="juego" id="juego" class="form-select">
+							<option id="juego_dis" value="-1">--- Juego ---</option>
+						
+							<% juegos.forEach(juego => { %>
+								<option value="<%= juego.id %>"><%= juego.nombre_jue %></option>
+							<% }) %>
+						</select>
+					</div>
+				</div>
+
+				<div class="row mb-4">
+					<div class="col-4">
+						<h4>Equipos</h4>
+					</div>
+
+					<div class="col-8 row">
+						<div class="col-5">
+							<select name="local" id="local" class="form-select" disabled>
+								<option value="-1" selected>--- Equipo local ---</option>
+							</select>
+						</div>
+
+						<div class="col-2 text-center centered">
+							<h5>vs</h5>
+						</div>
+
+						<div class="col-5">
+							<select name="visitante" id="visitante" class="form-select" disabled>
+								<option id="visitante_dis" value="-1" selected>--- Equipo visitante ---</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mb-4">
+					<div class="col-4">
+						<h4>Factores</h4>
+					</div>
+
+					<div class="col-8 row">
+						<div class="col-4">
+							<input name="f_local" type="number" min="0.1" step="0.1" class="form-control" placeholder="Factor local" disabled/>
+						</div>
+						<div class="col-4">
+							<input name="f_empate" type="number" min="0.1" step="0.1" class="form-control" placeholder="Factor empate" disabled/>
+						</div>
+						<div class="col-4">
+							<input name="f_visitante" type="number" min="0.1" step="0.1" class="form-control" placeholder="Factor visitante" disabled/>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mb-4">
+					<div class="col-4">
+						<h4>Fecha</h4>
+					</div>
+
+					<div class="col-8">
+						<input name="fecha" type="date" class="form-control" disabled/>
+					</div>
+				</div>
+
+				<div class="row mb-4">
+					<div class="col-4">
+						<h4>Hora de inicio</h4>
+					</div>
+
+					<div class="col-8 row">
+						<div class="col-4">
+							<input name="hora" type="number" min="0" max="23" class="form-control" placeholder="Hora" disabled/>
+						</div>
+
+						<div class="col-1 text-center centered">
+							<h5>:</h5>
+						</div>
+
+						<div class="col-4">
+							<input name="minutos" type="number" min="0" max="59" class="form-control" placeholder="Minutos" disabled/>
+						</div>
+
+						<div class="col-2 centered">
+							<label>horas</label>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mb-4">
+					<div class="col-4">
+						<h4>Duración</h4>
+					</div>
+
+					<div class="col-8 row">
+						<div class="col-4">
+							<input name="duracion" type="number" min="0" class="form-control" placeholder="Duración" disabled/>
+						</div>
+
+						<div class="col-2 centered">
+							<label>minutos</label>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mb-4">
+					<div class="col-4">
+						<h4>Estado</h4>
+					</div>
+
+					<div class="col-8">
+						<select name="estado" id="estado" class="form-select" disabled>
+							<option id="estado_dis" value="-1" selected>--- Estado ---</option>
+							<option value="0">Pendiente</option>
+							<option value="1">Iniciado</option>
+							<option value="2">Finalizado</option>
+						  </select>
+					</div>
+				</div>
+
+				<div class="row mb-4">
+					<div class="col-4">
+						<h4>Resultado</h4>
+					</div>
+
+					<div class="col-8">
+						<select name="resultado" id="resultado" class="form-select" disabled>
+							<option id="resultado_dis" value="-1" selected>--- Resultado ---</option>
+							<option value="0">Pendiente</option>
+							<option value="1">Victoria local</option>
+							<option value="2">Empate</option>
+							<option value="3">Victoria visitante</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="row mb-3 text-center">
+					<div class="col">
+						<button id="submit" type="submit" class="btn btn-success disabled">Siguiente</button>
+
+						<a href="/partidas/editar/<%= id_partida %>/categoria/<%= id_categoria %>" class="btn btn-outline-secondary ms-3">Regresar</a>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<!-- Footer -->
+		<div class="fixed-bottom">
+			<%- include('footer') %>
+		</div>
+	</body>
+</html>
