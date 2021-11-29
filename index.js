@@ -5,63 +5,9 @@ const db = require('./dao/models')
 const ejs=require('ejs')
 const { Client } = require('pg')
 const path= require('path')
-const Cliente=require('./dao/models/cliente')
-
-
-///conexio a base de datos postgres
-const connectionData = {
-	user: 'postgres',
-	host: "127.0.0.1",
-	database: 'postgres',
-	password: 'postgre',
-	port: 5432,
-  }
-  const client = new Client(connectionData)
-  client.connect()
-  console.log('se conecto')
-
-
-
-
-//partidas.id 
-const partidas =[{
-	id:1,fecha:"12/10/21",hora:"12 am",numero:1,
-	equipoa: "A", equipob:"B",
-	categoria: "primera",
-	juego:"primera ronda", equipoapostado:"A",
-	estado:"ganada",
-	monto:15,factor:2,resultado:15
-
-	
-},{id:2,fecha:"12/10/21",hora:"12 am",numero:1,
-equipoa: "A", equipob:"B",
-categoria: "primera",
-juego:"primera ronda", equipoapostado:"A",
-estado:"pendiente",
-monto:15,factor:1,resultado:15},
-{
-	id:3,fecha:"12/10/21",hora:"12 am",numero:1,
-	equipoa: "A", equipob:"B",
-	categoria: "primera",
-	juego:"primera ronda", equipoapostado:"A",
-	estado:"perdida",
-	monto:15,factor:0,resultado:15
-}];
-//juegos
-const juegos = [{
-	id:1,nombre:"U vs Alianza"
-},{
-	id:2,nombre:"atletico vs madrid"
-},
-{
-	id:3,nombre:"barcelona vs flamengo"
-},
-{
-	id:4,nombre:"cristal vs sport boys"
-}]
-
 const PORT = 5000
 const app = express()
+
 
 app.use(express.static('assets'))
 app.use(session({
@@ -87,8 +33,7 @@ app.get('/', (req, res) => {
 
 //aqui el post funciona pero con scripts , falta la db
 app.post('/login',(req,res)=>{
-	res.render('admin_menu')
-	
+	res.render('admin_menu')	
 })
 
 //redirecciona a menu cuando entra con el login
@@ -97,7 +42,8 @@ app.get('/menu',(req,res)=>{
 })
 
 //redireccion al menu de cliente
-app.get('/menucliente',(req,res)=>{
+app.get('/menucliente',async(req,res)=>{
+	const juegos = await db.Juego.findAll()
 	res.render('cliente_menu',{juegos:juegos})
 })
 
@@ -124,10 +70,6 @@ app.get('/cliente',(req,res)=>{
 
 	res.render('cliente_historial',{partidas:partidas})
 })
-
-
-
-
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
