@@ -11,34 +11,46 @@
 
         <h2>Banners Rotativos</h2>
         <table class="table table-responsive">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
 
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <a href="/banners"><img src="https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/news/img/ulima_campus_q_0851_600x400_7.jpg?itok=gnmECRzx" class="d-block w-100" alt="..."></a>
-                  </div>
-                  <div class="carousel-item">
-                    <img href="/banners" src="https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/page/image/_mg_3028_r_600.jpg?itok=hsz-wN7w" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/news/img/universidad_de_lima.jpg?itok=WKGIJ7eE" class="d-block w-100" alt="...">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
+                    <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
 
+                    <div class="carousel-inner">
+
+                      <div class="carousel-item active">
+                        <% banners.forEach( (banner) => { %>
+                            <% if (banners.id == "1") {%>
+                                <img src="<%= banner.imagen %>" class="d-block w-100" alt="...">
+                            <% }else { %>
+                                <img src="<%= banner.imagen %>" class="d-block w-100" alt="...">
+                            <% } %>
+                        <% }) %>
+                      </div>
+
+
+
+                  
+                      <div class="carousel-item">
+                        <img src="https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/page/image/_mg_3028_r_600.jpg?itok=hsz-wN7w" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/news/img/universidad_de_lima.jpg?itok=WKGIJ7eE" class="d-block w-100" alt="...">
+                      </div>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
         </table>
         <a class="btn btn-success" href="/banners">Regresar</a>
         <%- include('footer') %>

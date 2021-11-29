@@ -3,9 +3,14 @@ const router = express.Router()
 const db = require('../dao/models')
 
 //* banner en movimiento
-router.get('/banners/ver', (req, res) => {
-	
-    res.render('banners_rotativo')
+router.get('/banners/ver', async (req, res) => {
+    const banners = await db.Banner.findAll({
+    })
+
+    res.render('banners_rotativo', {
+        banners : banners,
+
+    })
 })
 
 
