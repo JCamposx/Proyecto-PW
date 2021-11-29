@@ -33,42 +33,53 @@ app.get('/', (req, res) => {
 
 //aqui el post funciona pero con scripts , falta la db
 app.post('/login',(req,res)=>{
+	db.Cliente.create({
+
+	})
 	res.render('admin_menu')	
 })
 
 //redirecciona a menu cuando entra con el login
-app.get('/menu',(req,res)=>{
-	res.render('menu')
-})
+// app.get('/menu',(req,res)=>{
+// 	res.render('menu')
+// })
 
 //redireccion al menu de cliente
-app.get('/menucliente',async(req,res)=>{
-	const juegos = await db.Juego.findAll()
-	res.render('cliente_menu',{juegos:juegos})
-})
+// app.get('/menucliente',async(req,res)=>{
+// 	const juegos = await db.Juego.findAll()
+// 	res.render('cliente_menu',{juegos:juegos})
+// })
 
 
-//cada que le das click a banner te redireccion a una pagina
-app.get('/banners',(req,res)=>{
-	res.render('banners')
-})
-//cada que le das click a categoria te redireccion a una pagina
+// //cada que le das click a banner te redireccion a una pagina
+// app.get('/banners',(req,res)=>{
+// 	res.render('banners')
+// })
+// //cada que le das click a categoria te redireccion a una pagina
 
 app.get('/categorias',(req,res)=>{
 	res.render('categorias')
 })
 //cada que le das click a juegos te redireccion a una pagina
-app.get('/juegos',(req,res)=>{
-	res.render('juegos')
-})
+// app.get('/juegos',(req,res)=>{
+// 	res.render('juegos')
+// })
 //cada que le das click a partidas te redireccion a una pagina
-app.get('/partidas',(req,res)=>{
-	res.render('partidas')
-})
+// app.get('/partidas',(req,res)=>{
+// 	res.render('partidas')
+// })
 //cada que entras como cliente te redireccion a una pagina
-app.get('/cliente',(req,res)=>{
+app.get('/cliente/historial', async (req,res)=>{
+	
+	const apuestas = await db.Apuesta.findAll({
+		where: {
+			id_cliente: req.session.id_cliente
+		}
+	})
 
-	res.render('cliente_historial',{partidas:partidas})
+	res.render('cliente_historial',{
+		apuestas: apuestas
+	})
 })
 
 ////////////////////////////////////////////////////////////////////////////////////////
