@@ -12,9 +12,6 @@
         }
 
         #myInput {
-            background-image: url('/css/searchicon.png');
-            background-position: 10px 10px;
-            background-repeat: no-repeat;
             width: 100%;
             font-size: 16px;
             padding: 12px 20px 12px 40px;
@@ -47,9 +44,8 @@
     <%- include('menu') %>
     <h2>Filtro Juego</h2>
 
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-    <h2>Filtro de Juegos</h2>
-    <a class="btn btn-success" href="/juegos">Volver</a>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar equipo.." title="Type in a name">
+    
     <table class="table table-hover" id="myTable">
             <thead>
                 <tr class="header">
@@ -66,6 +62,7 @@
 				<% }) %>
             </tbody>
         </table>
+        <a class="btn btn-success" href="/juegos">Volver</a>
 <script>
 function myFunction() {
   var input, filter, table, tr, td, i, txtValue;
