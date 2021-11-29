@@ -33,7 +33,7 @@ router.use(require('./ClientesNew'))
 router.use(require('./Esperar'))
 
 router.get('/', (req, res) => {
-	res.send('HOLA MUNDO')
+	res.render('index')
 })
-
+	
 module.exports = router

@@ -81,7 +81,7 @@ function main() {
 	document.getElementById('myInput').addEventListener('keyup', myFunction)
 	document.getElementById('myInput2').addEventListener('keyup', myFunction2)
 	document.getElementById('myInput3').addEventListener('keyup', myFunction3)
-	document.getElementById('myInpu4').addEventListener('keyup', myFunction4)
+	document.getElementById('myInput4').addEventListener('keyup', myFunction4)
 }
 
 window.addEventListener('load', main)
