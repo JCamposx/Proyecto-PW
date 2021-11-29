@@ -22,7 +22,7 @@ router.get('/clientes/modificar/:codigo', async (req, res) => {
 router.post('/clientes/modificar', async (req, res) => {
     const idCliente = req.body.cliente_id
     const nombre = req.body.cliente_nombre
-    const imagen = req.body.cliente_apellido
+    const apellido = req.body.cliente_apellido
     const dni = req.body.cliente_dni
     const foto = req.body.cliente_foto
     const correo = req.body.cliente_correo
@@ -45,7 +45,7 @@ router.post('/clientes/modificar', async (req, res) => {
     ///////////////////////////////
     if(req.body.cliente_PEP== "1"){
 		cliente.nombre = nombre
-        cliente.imagen = imagen
+        cliente.apellidos = apellido
         cliente.dni = dni
         cliente.foto = foto
         cliente.correo =correo

@@ -41,8 +41,11 @@
         <%- include('menu') %>
 
         <h2>Lista de Clientes</h2>
-        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Names.." title="Type in a name">
+        <input type="text" id="myInput2" onkeyup="myFunction2()" placeholder="Search for Last name.." title="Type in a name">
+        <input type="text" id="myInput3" onkeyup="myFunction3()" placeholder="Search for DNI.." title="Type in a name">
+        <input type="text" id="myInput4" onkeyup="myFunction4()" placeholder="Search for Correo.." title="Type in a name">
+        
         <a href="/clientes/listar/<%= cliente.id %>" >Listar</a>
 
         <table id="myTable" class="display nowrap" style="width:100%">
@@ -69,7 +72,7 @@
                     <tr>
                         <td><%= cliente.id %></td>
                         <td><%= cliente.nombre %></td>
-                        <td><%= cliente.apellido %></td>
+                        <td><%= cliente.apellidos %></td>
                         <td><%= cliente.dni %></td>
                         <td><%= cliente.foto %></td>
                         <td><%= cliente.correo %></td>
@@ -98,8 +101,9 @@
               filter = input.value.toUpperCase();
               table = document.getElementById("myTable");
               tr = table.getElementsByTagName("tr");
+
               for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
+                td = tr[i].getElementsByTagName("td")[1];
                 if (td) {
                   txtValue = td.textContent || td.innerText;
                   if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -107,9 +111,73 @@
                   } else {
                     tr[i].style.display = "none";
                   }
-                }       
+                } 
               }
             }
+
+            function myFunction2() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("myInput2");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                  td = tr[i].getElementsByTagName("td")[2];
+                  if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                      tr[i].style.display = "";
+                    } else {
+                      tr[i].style.display = "none";
+                    }
+                  } 
+                }
+            }
+
+
+            function myFunction3() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("myInput3");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                  td = tr[i].getElementsByTagName("td")[3];
+                  if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                      tr[i].style.display = "";
+                    } else {
+                      tr[i].style.display = "none";
+                    }
+                  } 
+                }
+            }
+
+
+            function myFunction4() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("myInput4");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                  td = tr[i].getElementsByTagName("td")[5];
+                  if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                      tr[i].style.display = "";
+                    } else {
+                      tr[i].style.display = "none";
+                    }
+                  } 
+                }
+            }
+
+
+
+
+
             </script>
         <%- include('footer') %>
     </body>

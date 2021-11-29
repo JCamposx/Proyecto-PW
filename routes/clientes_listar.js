@@ -18,7 +18,7 @@ router.get('/clientes/listar', async (req, res) => {
 router.post('/clientes/listar', async (req, res) => {
     const idCliente = req.body.cliente_id
     const nombre = req.body.cliente_nombre
-    const imagen = req.body.cliente_apellido
+    const apellido = req.body.cliente_apellido
     const dni = req.body.cliente_dni
     const correo = req.body.cliente_correo
     const telefono = req.body.cliente_telefono
@@ -26,7 +26,7 @@ router.post('/clientes/listar', async (req, res) => {
     
     ///////////////////////////////
 	cliente.nombre = nombre
-    cliente.imagen = imagen
+    cliente.apellidos = apellido
     cliente.dni = dni
     cliente.correo =correo
     cliente.telefono = telefono
