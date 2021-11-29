@@ -27,7 +27,7 @@
                     
                     </thead>
                     <tbody>
-                        <% clientes.forEach( (cliente) => { %>
+                        <% cliente.forEach( (cliente) => { %>
                             <tr>
                                 <td><%= cliente.id %></td>
                                 <td><%= cliente.nombre %></td>
@@ -39,7 +39,7 @@
                         <% }) %>   
             </tbody>
         </table>
-        <button type="submit" class="btn btn-success">Guardar</button>
+        <a class="btn btn-success" href="/clientes">Retroceder</a>
     </form>
 
     <%- include('footer') %>

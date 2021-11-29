@@ -2,14 +2,10 @@ const express = require('express')
 const router = express.Router()
 const db = require('../dao/models')
 
-//* Modificar-UPDATE 
-router.get('/clientes/listar/:codigo', async (req, res) => {
-    const idCliente = req.params.codigo
 
-    const cliente = await db.Cliente.findOne({
-        where : {
-            id : idCliente
-        }
+router.get('/clientes/listar', async (req, res) => {
+
+    const cliente = await db.Cliente.findAll({
     })
 
     //const categorias = await db.Categoria.findAll()
@@ -28,12 +24,6 @@ router.post('/clientes/listar', async (req, res) => {
     const telefono = req.body.cliente_telefono
 
     
-    const cliente = await db.Cliente.findOne({
-        where : {
-            id : idCliente
-        }
-    })
-    
     ///////////////////////////////
 	cliente.nombre = nombre
     cliente.imagen = imagen
@@ -41,7 +31,6 @@ router.post('/clientes/listar', async (req, res) => {
     cliente.correo =correo
     cliente.telefono = telefono
     
-    await cliente.save()
     ///////////////////////////////
 
 

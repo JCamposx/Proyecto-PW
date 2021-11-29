@@ -37,17 +37,17 @@
             }
             </style>
     </head>
-    <body class="table table-hover container" id="myTable">
+    <body class="container">
         <%- include('menu') %>
 
         <h2>Lista de Clientes</h2>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
 
         <a href="/clientes/listar/<%= cliente.id %>" >Listar</a>
-        <a href="/clientes/filtrar/<%= cliente.id %>" >Filtrar</a>
 
-        <table class="display nowrap" style="width:100%">
+        <table id="myTable" class="display nowrap" style="width:100%">
             <thead>
-                <tr>
+                <tr class="header">
                     <th>Id</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
@@ -91,7 +91,26 @@
 
             </tbody>
         </table>
-
+        <script>
+            function myFunction() {
+              var input, filter, table, tr, td, i, txtValue;
+              input = document.getElementById("myInput");
+              filter = input.value.toUpperCase();
+              table = document.getElementById("myTable");
+              tr = table.getElementsByTagName("tr");
+              for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                  txtValue = td.textContent || td.innerText;
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                  } else {
+                    tr[i].style.display = "none";
+                  }
+                }       
+              }
+            }
+            </script>
         <%- include('footer') %>
     </body>
 </html>
