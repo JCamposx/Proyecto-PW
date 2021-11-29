@@ -15,6 +15,12 @@ router.use(require('./banners_eliminar'))
 
 router.use(require('./reglas'))
 
+///////////////////////////////////////////
+router.use(require('./clientes'))
+router.use(require('./clientes_filtrar'))
+router.use(require('./clientes_modificar'))
+///////////////////////////////////////////
+
 router.get('/', (req, res) => {
 	res.send('HOLA MUNDO')
 })
