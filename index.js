@@ -26,23 +26,3 @@ app.listen(PORT, () => {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
-/*const URL_BACKEND ="https://www.atletasla.com/wp-content/uploads/2018/07/%C2%A1Los-10-deportes-mas-practicados-en-todo-el-mundo.jpg"
-
-const promiseOK = (response) =>{
-	response.json().then((data)=>{
-		console.log(data[0].url)
-	}).catch((error)=>{
-		console.error(error)
-	})
-}
-
-const main = () => {
-	fetch(URL_BACKEND)
-		.then(promiseOK)
-		.catch((error)=>{
-			console.error(error)
-		})
-	console.log(`Linea 11`)
-}
-window.addEventListener("load",main)
-*/

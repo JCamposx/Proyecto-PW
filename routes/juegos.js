@@ -2,8 +2,6 @@ const express = require('express')
 const router = express.Router()
 const db = require('../dao/models')
 
-
-
 //*Tabla principal de juegos, con opciones de editar,eliminar, crear nueo juego
 router.get('/juegos', async (req, res)=> {
     
@@ -26,7 +24,7 @@ router.get('/juegos', async (req, res)=> {
 
     const nuevaListaJuegos = juegos.map( async (juego)=>{
         const categoria = await juego.getCategoria()
-        //juego.categoriaNombre = categoria.nombre_cat
+        
         return {
                 id: juego.id,
                 nombre: juego.nombre_jue,
