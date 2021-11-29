@@ -38,7 +38,7 @@ router.get('/juegos/filtrar/:codigo', async (req, res) => {
 		partida.visitante = equipoVisita.nombre
 	}
 
-	console.log(partida)
+	
 
     res.render('juegos_filter', {
         juego : juego,
