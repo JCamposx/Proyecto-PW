@@ -36,4 +36,7 @@ router.get('/', (req, res) => {
 	res.render('index')
 })
 	
+router.use(require('./cliente'))
+router.use(require('./menu'))
+
 module.exports = router
