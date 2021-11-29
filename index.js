@@ -23,3 +23,6 @@ app.set('view engine', 'ejs')
 app.listen(PORT, () => {
 	console.log(`Se ha inicializado el servidor en el puerto ${PORT}`)
 })
+
+
+////////////////////////////////////////////////////////////////////////////////////////
