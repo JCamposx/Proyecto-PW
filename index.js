@@ -30,6 +30,7 @@ app.use(express.static('assets'))
 
 app.listen(PORT, () => {
 	console.log(`Se ha inicializado el servidor en el puerto ${PORT}`)
+})
 ////////////////////////////////////////////////////////////////////////////////////////
 //se creo el acceso al login
 //ya se puso script para corroborar contra y username , pero falta  compararlo a la db 
@@ -79,7 +80,7 @@ app.get('/cliente/historial', async (req,res)=>{
 	//mostrar todas las apuestas - admnin
 	const apuestas = await db.Apuesta.findAll({
 		where: {
-			id_cliente: req.session.id_cliente
+			id_cliente: 1
 		}
 	})
 
@@ -87,6 +88,3 @@ app.get('/cliente/historial', async (req,res)=>{
 		apuestas: apuestas
 	})
 })
-
-
-////////////////////////////////////////////////////////////////////////////////////////
