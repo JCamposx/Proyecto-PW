@@ -38,21 +38,31 @@ router.post('/cliente/new',async(req,res)=>{
 			contraseña=contEncryptada
 			console.log(contEncryptada)
 			console.log(contraseña)
-		}			await db.Cliente.create({
-				nombre: ClienteNom,
-				apellidos: ClienteApp,
-				dni: ClienteDNI,
-				foto: ClienteFoto,
-				correo:ClienteCorreo,
-				contraseña: contraseña,
-				telefono: ClienteTelf,
-				departamento: ClienteDep,
-				provincia: ClienteProv,
-				distrito: ClienteDist,
-				direccion: ClienteDir,
-				esPEP: ClientePEP
-			})
-			res.redirect('/cliente/espera')
+		}
+		await db.Cliente.create({
+			nombre: ClienteNom,
+			apellidos: ClienteApp,
+			dni: ClienteDNI,
+			foto: ClienteFoto,
+			correo:ClienteCorreo,
+			contraseña: contraseña,
+			telefono: ClienteTelf,
+			departamento: ClienteDep,
+			provincia: ClienteProv,
+			distrito: ClienteDist,
+			direccion: ClienteDir,
+			esPEP: ClientePEP
+		})
+
+		const cliente = await db.Cliente.findOne({
+			where: {
+				dni: ClienteDNI
+			}
+		})
+
+		req.session.id_cliente = cliente.id
+
+		res.redirect('/cliente/espera')
 	})
 	
 
