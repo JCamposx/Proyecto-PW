@@ -3,13 +3,14 @@
     <head>
         <title>ADMIN</title>
 		<link rel="stylesheet" href="/css/index.css">
+		<script></script>
         <meta charset="utf-8" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
 <body class="container">
-    <%- include('menu') %>
+    <%- include('navbar') %>
     <h2>Filtro Juego</h2>
 
     <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar equipo Local" title="Type in a name">
@@ -31,45 +32,6 @@
             </tbody>
         </table>
         <a class="btn btn-success" href="/juegos">Volver</a>
-<script>
-function myFunction() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }       
-  }
-}
-function myFunction2() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput1");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }       
-  }
-}
-</script>
  <%- include('footer') %>
 </body>
 </html>

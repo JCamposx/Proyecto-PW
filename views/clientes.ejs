@@ -3,68 +3,67 @@
     <head>
         <title>Admin</title>
 		<link rel="stylesheet" href="/css/index.css">
-		<script src="/js/clientes"></script>
+		<script src="/js/clientes.js"></script>
         <meta charset="utf-8" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     </head>
-    <body class="container">
-        <%- include('menu') %>
-
-        <h2>Lista de Clientes</h2>
-        <input type="text" id="myInput" placeholder="Search for Names.." title="Type in a name">
-        <input type="text" id="myInput2" placeholder="Search for Last name.." title="Type in a name">
-        <input type="text" id="myInput3" placeholder="Search for DNI.." title="Type in a name">
-        <input type="text" id="myInput4" placeholder="Search for Correo.." title="Type in a name">
-        
-        <a href="/clientes/listar/<%= cliente.id %>" >Listar</a>
-
-        <table id="myTable" class="display nowrap" style="width:100%">
-            <thead>
-                <tr class="header">
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>DNI</th>
-                    <th>Foto</th>
-                    <th>Correo</th>
-                    <th>Telefono</th>
-                    <th>Direccion</th>               
-                    <th>Distrito</th>
-                    <th>Provincia</th>
-                    <th>Departamento</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
-                </tr>
-
-            </thead>
-            <tbody>
-                <% cliente.forEach( (cliente) => { %>
-                    <tr>
-                        <td><%= cliente.id %></td>
-                        <td><%= cliente.nombre %></td>
-                        <td><%= cliente.apellidos %></td>
-                        <td><%= cliente.dni %></td>
-                        <td><%= cliente.foto %></td>
-                        <td><%= cliente.correo %></td>
-                        <td><%= cliente.telefono %></td>
-                        <td><%= cliente.direccion %></td>
-                        <td><%= cliente.distrito %></td>
-                        <td><%= cliente.provincia %></td>
-                        <td><%= cliente.departamento %></td>
-                        <td><%= cliente.estado %></td>
-
-                    </tr>
-                    <tr>  
-                        <td>
-                            <a href="/clientes/modificar/<%= cliente.id %>" >Editar</a>
-                        </td>
-                    </tr>
-                <% }) %>
-
-
-            </tbody>
-        </table>
+    <body>
+		<%- include('navbar') %>	
+        <div class="container mb-3">
+			
+			<h2>Lista de Clientes</h2>
+			<input type="text" id="myInput" placeholder="Search for Names.." title="Type in a name">
+			<input type="text" id="myInput2" placeholder="Search for Last name.." title="Type in a name">
+			<input type="text" id="myInput3" placeholder="Search for DNI.." title="Type in a name">
+			<input type="text" id="myInput4" placeholder="Search for Correo.." title="Type in a name">
+			
+			<a href="/clientes/listar/<%= cliente.id %>" >Listar</a>
+			
+				<table id="myTable" class="display nowrap">
+					<thead>
+						<tr class="header">
+							<th>Id</th>
+							<th>Nombre</th>
+							<th>Apellido</th>
+							<th>DNI</th>
+							<th>Foto</th>
+							<th>Correo</th>
+							<th>Telefono</th>
+							<th>Direccion</th>               
+							<th>Distrito</th>
+							<th>Provincia</th>
+							<th>Departamento</th>
+							<th>Estado</th>
+							<th>Acciones</th>
+						</tr>
+				
+					</thead>
+					<tbody>
+						<% cliente.forEach( (cliente) => { %>
+							<tr>
+								<td><%= cliente.id %></td>
+								<td><%= cliente.nombre %></td>
+								<td><%= cliente.apellidos %></td>
+								<td><%= cliente.dni %></td>
+								<td><%= cliente.foto %></td>
+								<td><%= cliente.correo %></td>
+								<td><%= cliente.telefono %></td>
+								<td><%= cliente.direccion %></td>
+								<td><%= cliente.distrito %></td>
+								<td><%= cliente.provincia %></td>
+								<td><%= cliente.departamento %></td>
+								<td><%= cliente.estado %></td>
+								<td>
+									<a href="/clientes/modificar/<%= cliente.id %>" >Editar</a>
+								</td>
+							</tr>
+						<% }) %>
+				
+				
+					</tbody>
+				</table>
+		</div>
         <%- include('footer') %>
     </body>
 </html>
