@@ -430,6 +430,32 @@ module.exports = {
 			id_juego: 4
 		}
 	])
+	await queryInterface.bulkInsert('Banner', [
+		{
+			nombre: 'UEFA Champions League',
+			imagen: 'https://editorial.uefa.com/resources/026b-12b6a5dc8f16-3eee5dbb0cd4-1000/ucl_logo_20210701155513.jpg',
+			url: '/apuestas/1',
+			estado: '1',
+			createdAt: new Date(),
+			updatedAt: new Date()
+		},
+		{
+			nombre: 'Copa Libertadores',
+			imagen: 'https://www.conmebol.com/sites/default/files/sin-titulo-1_17.jpg',
+			url: '/apuestas/2',
+			estado: '1',
+			createdAt: new Date(),
+			updatedAt: new Date()
+		},
+		{
+			nombre: 'Liga ABC',
+			imagen: 'https://cadenaser00.epimg.net/emisora/imagenes/2017/07/05/radio_san_sebastian/1499268719_903532_1499268761_noticia_normal.jpg',
+			url: '/apuestas/3',
+			estado: '0',
+			createdAt: new Date(),
+			updatedAt: new Date()
+		}
+	])
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -444,6 +470,7 @@ module.exports = {
 	 await queryInterface.bulkDelete('Equipo', null, {})
 	 await queryInterface.bulkDelete('Juego_Equipo', null, {})
 	 await queryInterface.bulkDelete('Partida', null, {})
+	 await queryInterface.bulkDelete('Banner', null, {})
 
   }
 };
