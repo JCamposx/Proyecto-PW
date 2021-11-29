@@ -171,7 +171,7 @@
 
 					<div class="col-8">
 						<select name="estado" id="estado" class="form-select" required>
-							<option id="estado_dis" value="-1" selected>--- Estado ---</option>
+							<option id="estado_dis" value="-1" disabled>--- Estado ---</option>
 							<% if (partida.estado == 0) { %>
 								<option value="0" selected>Pendiente</option>
 								<option value="1">Iniciado</option>
@@ -196,7 +196,7 @@
 
 					<div class="col-8">
 						<select name="resultado" id="resultado" class="form-select" required>
-							<option id="resultado_dis" value="-1" selected>--- Resultado ---</option>
+							<option id="resultado_dis" value="-1" disabled>--- Resultado ---</option>
 							<% if (partida.resultado == 0) { %>
 								<option value="0" selected>Pendiente</option>
 								<option value="1">Victoria local</option>

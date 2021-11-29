@@ -11,12 +11,14 @@ router.get('/partidas', async (req, res) => {
 		]
 	})
 
+	console.log(partidas)
+
 	const lista_juegos = []
 	const lista_categorias = []
 	const lista_equipos = []
 
 	if (partidas.length >= 0) {
-		for (let partida of partidas) {
+		for (let partida of partidas) {			
 			const juego = await partida.getJuego()
 			lista_juegos.push(juego)
 

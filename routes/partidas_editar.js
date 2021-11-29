@@ -63,15 +63,15 @@ router.post('/partidas/editar/:id_part', async (req, res) => {
 	const factor_empate = req.body.f_empate
 	const factor_visitante = req.body.f_visitante
 	const fecha = req.body.fecha
-	const hora = req.body.hora
-	const minutos = req.body.minutos
+	let hora = req.body.hora
+	let minutos = req.body.minutos
 	const duracion = req.body.duracion
 	const estado = req.body.estado
 	const resultado = req.body.resultado
 
 	const fecha_arr = fecha.split('-')
 	const nueva_fecha = new Date(parseInt(fecha_arr[0]), parseInt(fecha_arr[1])-1, parseInt(fecha_arr[2]))
-	nueva_fecha.setHours(parseInt(hora), parseInt(minutos))
+	nueva_fecha.setHours(parseInt(hora) - 5, parseInt(minutos))
 
 	if (hora.length == 1) {
 		hora = '0' + hora
@@ -87,18 +87,29 @@ router.post('/partidas/editar/:id_part', async (req, res) => {
 		}
 	})
 
-	partida.fecha = nueva_fecha,
-	partida.hora_inicio = hora + ':' + minutos,
-	partida.duracion = duracion,
-	partida.factor_local = factor_local,
-	partida.factor_visita = factor_visitante,
-	partida.factor_empate = factor_empate,
-	partida.resultado = resultado,
-	partida.estado = estado,
-	partida.id_local = id_local,
-	partida.id_visita = id_visitante,
+	partida.fecha = nueva_fecha
+	partida.hora_inicio = hora + ':' + minutos
+	partida.duracion = duracion
+	partida.factor_local = factor_local
+	partida.factor_visita = factor_visitante
+	partida.factor_empate = factor_empate
+	partida.resultado = resultado
+	partida.estado = estado
+	partida.id_local = id_local
+	partida.id_visita = id_visitante
 	partida.id_juego = id_juego
 
+	const partida_equipos = await db.Partida_Equipo.findAll({
+		where: {
+			id_partida: id_partida
+		}
+	})
+
+	partida_equipos[0].id_equipo = id_local
+	partida_equipos[1].id_equipo = id_visitante
+
+	await partida_equipos[0].save()
+	await partida_equipos[1].save()
 	await partida.save()
 	
 	res.redirect('/partidas')
@@ -158,8 +169,6 @@ router.post('/partidas/editar/:id_part/categoria/:id_cat', (req, res) => {
 	const id_partida = req.params.id_part
 
 	const id_categoria = req.body.categoria
-
-	console.log(id_categoria)
 
 	res.redirect(`/partidas/editar/${id_partida}/categoria/${id_categoria}/editado`)
 })
@@ -254,15 +263,15 @@ router.post('/partidas/editar/:id_part/categoria/:id_cat/editado/juego/:id_jue',
 	const factor_empate = req.body.f_empate
 	const factor_visitante = req.body.f_visitante
 	const fecha = req.body.fecha
-	const hora = req.body.hora
-	const minutos = req.body.minutos
+	let hora = req.body.hora
+	let minutos = req.body.minutos
 	const duracion = req.body.duracion
 	const estado = req.body.estado
 	const resultado = req.body.resultado
 
 	const fecha_arr = fecha.split('-')
 	const nueva_fecha = new Date(parseInt(fecha_arr[0]), parseInt(fecha_arr[1])-1, parseInt(fecha_arr[2]))
-	nueva_fecha.setHours(parseInt(hora), parseInt(minutos))
+	nueva_fecha.setHours(parseInt(hora) - 5, parseInt(minutos))
 
 	if (hora.length == 1) {
 		hora = '0' + hora
@@ -296,11 +305,8 @@ router.post('/partidas/editar/:id_part/categoria/:id_cat/editado/juego/:id_jue',
 		}
 	})
 
-
 	partida_equipos[0].id_equipo = id_local
 	partida_equipos[1].id_equipo = id_visitante
-
-	console.log(partida_equipos[0])
 
 	await partida_equipos[0].save()
 	await partida_equipos[1].save()

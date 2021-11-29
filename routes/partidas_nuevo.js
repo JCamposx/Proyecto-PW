@@ -120,7 +120,7 @@ router.post('/partidas/nuevo/:id_cat/:id_jue', async (req, res) => {
 
 	const fecha_arr = fecha.split('-')
 	const nueva_fecha = new Date(parseInt(fecha_arr[0]), parseInt(fecha_arr[1])-1, parseInt(fecha_arr[2]))
-	nueva_fecha.setHours(parseInt(hora), parseInt(minutos))
+	nueva_fecha.setHours(parseInt(hora) - 5, parseInt(minutos))
 
 	if (hora.length == 1) {
 		hora = '0' + hora
