@@ -70,7 +70,7 @@ app.get('/categorias',(req,res)=>{
 // })
 //cada que entras como cliente te redireccion a una pagina
 app.get('/cliente/historial', async (req,res)=>{
-	
+	//mostrar todas las apuestas - admnin
 	const apuestas = await db.Apuesta.findAll({
 		where: {
 			id_cliente: req.session.id_cliente
