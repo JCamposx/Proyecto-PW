@@ -4,7 +4,6 @@ const db = require('../dao/models')
 
 router.get('/juegos/filtrar/:codigo', async (req, res) => {
     const idJuego = req.params.codigo
-    const idPartida =req.body.partida_id
     
     const juego = await db.Juego.findOne({
         where : {
@@ -18,16 +17,27 @@ router.get('/juegos/filtrar/:codigo', async (req, res) => {
         }
     })
 
-    const equipos = await db.Equipos.findAll({
-        where :{
-            id : idPartida
-        }
-    })
+    for (partida of partidas) {
+		const equipoLocal = await db.Equipo.findOne({
+			where : {
+				id : partida.id_local
+			}
+		})
+
+		const equipoVisita = await db.Equipo.findOne({
+			where : {
+				id : partida.id_visita
+			}
+		})
+
+		partida.local = equipoLocal.nombre
+		partida.visitante = equipoVisita.nombre
+	}
 
     res.render('juegos_filter', {
         juego : juego,
-        partidas : partidas,
-        equipos : equipos
+        partidas : partidas
+        
     })
 })
 
