@@ -337,7 +337,12 @@ module.exports = {
 			updatedAt: new Date()
 		},
 	])
-
+	const fecha1 = new Date(2022, 0, 8); fecha1.setHours(15 - 5, 30);
+	const fecha2 = new Date(2021, 11, 11); fecha2.setHours(15 - 5, 0);
+	const fecha3 = new Date(2021, 10, 4); fecha3.setHours(17 - 5, 40);
+	const fecha4 = new Date(2021, 9, 31); fecha4.setHours(8 - 5, 5);
+	const fecha5 = new Date(2021, 11, 3); fecha5.setHours(13 - 5, 20);
+	const fecha6 = new Date(2021, 9, 4); fecha6.setHours(15 - 5, 0);
 	await queryInterface.bulkInsert('Partida', [
 		{
 			fecha: new Date(2022, 0, 8),
@@ -430,6 +435,80 @@ module.exports = {
 			id_juego: 4
 		}
 	])
+	await queryInterface.bulkInsert('Partida_Equipo', [
+		{
+			id_partida: 1,
+			id_equipo: 1,
+			createdAt: new Date(),
+			updatedAt: new Date()
+		},
+		{
+			id_partida: 1,
+			id_equipo: 3,
+			createdAt: new Date(),
+			updatedAt: new Date()
+		},
+		{
+			id_partida: 2,
+			id_equipo: 10,
+			createdAt: new Date(),
+			updatedAt: new Date()
+		},
+		{
+			id_partida: 2,
+			id_equipo: 11,
+			createdAt: new Date(),
+			updatedAt: new Date()
+		},
+		{
+			id_partida: 3,
+			id_equipo: 14,
+			createdAt: new Date(),
+			updatedAt: new Date()
+		},
+		{
+			id_partida: 3,
+			id_equipo: 13,
+			createdAt: new Date(),
+			updatedAt: new Date()
+		},
+		{
+			id_partida: 4,
+			id_equipo: 5,
+			createdAt: new Date(),
+			updatedAt: new Date()
+		},
+		{
+			id_partida: 4,
+			id_equipo: 6,
+			createdAt: new Date(),
+			updatedAt: new Date()
+		},
+		{
+			id_partida: 5,
+			id_equipo: 8,
+			createdAt: new Date(),
+			updatedAt: new Date()
+		},
+		{
+			id_partida: 5,
+			id_equipo: 7,
+			createdAt: new Date(),
+			updatedAt: new Date()
+		},
+		{
+			id_partida: 6,
+			id_equipo: 15,
+			createdAt: new Date(),
+			updatedAt: new Date()
+		},
+		{
+			id_partida: 6,
+			id_equipo: 16,
+			createdAt: new Date(),
+			updatedAt: new Date()
+		},
+	])
 	await queryInterface.bulkInsert('Banner', [
 		{
 			nombre: 'UEFA Champions League',
@@ -470,6 +549,7 @@ module.exports = {
 	 await queryInterface.bulkDelete('Equipo', null, {})
 	 await queryInterface.bulkDelete('Juego_Equipo', null, {})
 	 await queryInterface.bulkDelete('Partida', null, {})
+	 await queryInterface.bulkDelete('Partida_Equipo', null, {})
 	 await queryInterface.bulkDelete('Banner', null, {})
 
   }
