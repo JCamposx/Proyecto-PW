@@ -11,8 +11,6 @@ router.get('/partidas', async (req, res) => {
 		]
 	})
 
-	console.log(partidas)
-
 	const lista_juegos = []
 	const lista_categorias = []
 	const lista_equipos = []
