@@ -19,6 +19,7 @@ router.use(require('./reglas'))
 router.use(require('./clientes'))
 router.use(require('./clientes_filtrar'))
 router.use(require('./clientes_modificar'))
+router.use(require('./clientes_listar'))
 ///////////////////////////////////////////
 
 router.get('/', (req, res) => {

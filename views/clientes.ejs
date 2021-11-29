@@ -5,13 +5,47 @@
         <meta charset="utf-8" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            #myInput {
+                background-image: url('/css/searchicon.png');
+                background-position: 10px 10px;
+                background-repeat: no-repeat;
+                width: 100%;
+                font-size: 16px;
+                padding: 12px 20px 12px 40px;
+                border: 1px solid #ddd;
+                margin-bottom: 12px;
+            }
+            #myTable {
+                border-collapse: collapse;
+                width: 100%;
+                border: 1px solid #ddd;
+                font-size: 18px;
+            }
+            #myTable th, #myTable td {
+                text-align: left;
+                padding: 12px;
+            }
+            #myTable tr {
+                border-bottom: 1px solid #ddd;
+            }
+            #myTable tr.header, #myTable tr:hover {
+                background-color: #f1f1f1;
+            }
+            </style>
     </head>
-    <body class="container">
+    <body class="table table-hover container" id="myTable">
         <%- include('menu') %>
 
         <h2>Lista de Clientes</h2>
-        <a class="btn btn-success" href="/clientes/new">Nuevo</a>
-        <table class="table table-hover">
+
+        <a href="/clientes/listar/<%= cliente.id %>" >Listar</a>
+        <a href="/clientes/filtrar/<%= cliente.id %>" >Filtrar</a>
+
+        <table class="display nowrap" style="width:100%">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -21,20 +55,17 @@
                     <th>Foto</th>
                     <th>Correo</th>
                     <th>Telefono</th>
-                    <th>Direccion</th>
-                    
-                </tr>                
+                    <th>Direccion</th>               
                     <th>Distrito</th>
                     <th>Provincia</th>
                     <th>Departamento</th>
                     <th>Estado</th>
                     <th>Acciones</th>
-                <tr>
-
                 </tr>
+
             </thead>
             <tbody>
-                <% clientes.forEach( (cliente) => { %>
+                <% cliente.forEach( (cliente) => { %>
                     <tr>
                         <td><%= cliente.id %></td>
                         <td><%= cliente.nombre %></td>
@@ -42,22 +73,22 @@
                         <td><%= cliente.dni %></td>
                         <td><%= cliente.foto %></td>
                         <td><%= cliente.correo %></td>
-                    </tr>
-                    <tr>
                         <td><%= cliente.telefono %></td>
                         <td><%= cliente.direccion %></td>
                         <td><%= cliente.distrito %></td>
                         <td><%= cliente.provincia %></td>
                         <td><%= cliente.departamento %></td>
                         <td><%= cliente.estado %></td>
+
                     </tr>
                     <tr>  
                         <td>
                             <a href="/clientes/modificar/<%= cliente.id %>" >Editar</a>
-                            <a href="/clientes/filtrar/<%= cliente.id %>" >Filtrar</a>
                         </td>
                     </tr>
                 <% }) %>
+
+
             </tbody>
         </table>
 

@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const db = require('../dao/models')
 
-//* Modificar-UPDATE banners
+//* Modificar-UPDATE 
 router.get('/clientes/modificar/:codigo', async (req, res) => {
     const idCliente = req.params.codigo
 
@@ -32,29 +32,37 @@ router.post('/clientes/modificar', async (req, res) => {
     const provincia = req.body.cliente_provincia
     const departamento = req.body.cliente_departamento
     const estado = req.body.cliente_estado
+    const PEP = req.body.cliente_PEP
 
     
 
-    const cliente = await db.cliente.findOne({
+    const cliente = await db.Cliente.findOne({
         where : {
             id : idCliente
         }
     })
     
-    cliente.nombre = nombre
-    cliente.imagen = imagen
-    cliente.dni = dni
-    cliente.foto = foto
-    cliente.correo =correo
-    cliente.telefono = telefono
-    cliente.direccion = direccion
-    cliente.distrito = distrito
-    cliente.provincia = provincia
-    cliente. departamento = departamento
-    cliente.estado = estado
+    ///////////////////////////////
+    if(req.body.cliente_PEP== "1"){
+		cliente.nombre = nombre
+        cliente.imagen = imagen
+        cliente.dni = dni
+        cliente.foto = foto
+        cliente.correo =correo
+        cliente.telefono = telefono
+        cliente.direccion = direccion
+        cliente.distrito = distrito
+        cliente.provincia = provincia
+        cliente.departamento = departamento
+        cliente.estado = estado
+    
+        await cliente.save()
+	}
+	else{
+		console.log('cliente')
+	}
+    ///////////////////////////////
 
-
-    await cliente.save()
 
     res.redirect('/clientes')
 

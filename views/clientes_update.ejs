@@ -9,36 +9,90 @@
     <body class="container">
         <%- include('menu') %>
 
-        <h2>Formulario Banner</h2>
-        <form method="post" action="/banners/modificar">
-            <input type="hidden" name="banner_id" value="<%= banner.id %>" />
+        <h2>Formulario CLientes</h2>
+        <form method="post" action="/clientes/modificar">
+            <input type="hidden" name="cliente_id" value="<%= cliente.id %>" />
+
             <div>
                 <label class="form-label">Nombre:</label>
-                <input name="banner_nombre" 
+                <input name="cliente_nombre" 
                     type="text" 
                     class="form-control"
-                    value="<%= banner.nombre %>" />
+                    value="<%= cliente.nombre %>" />
+            </div>
+
+            <div>
+                <label class="form-label">Apellido:</label>
+                <input name="cliente_apellido" 
+                    type="text" 
+                    class="form-control"
+                    value="<%= cliente.apellido %>" />
+            </div>
+
+            <div>
+                <label class="form-label">FOTO:</label>
+                <input name="cliente_dni" 
+                    type="text" 
+                    class="form-control"
+                    value="<%= cliente.dni %>" />
+            </div>
+
+            <div>
+                <label class="form-label">Correo:</label>
+                <input name="cliente_correo" 
+                    type="text" 
+                    class="form-control"
+                    value="<%= cliente.correo %>" />
             </div>
             <div>
-                <label class="form-label">Imagen:</label>
-                <input name="banner_imagen" 
+                <label class="form-label">Telefono:</label>
+                <input name="cliente_telefono" 
                     type="text" 
                     class="form-control"
-                    value="<%= banner.imagen %>" />
+                    value="<%= cliente.telefono %>" />
             </div>
             <div>
-                <label class="form-label">Url:</label>
-                <input name="banner_url" 
+                <label class="form-label">Direccion:</label>
+                <input name="cliente_direccion" 
                     type="text" 
                     class="form-control"
-                    value="<%= banner.url %>" />
+                    value="<%= cliente.direccion%>" />
             </div>
+            <div>
+                <label class="form-label">Distrito:</label>
+                <input name="cliente_distrito" 
+                    type="text" 
+                    class="form-control"
+                    value="<%= cliente.distrito %>" />
+            </div>
+
+            <div>
+                <label class="form-label">Provincia:</label>
+                <input name="cliente_provincia" 
+                    type="text" 
+                    class="form-control"
+                    value="<%= cliente.provincia %>" />
+            </div>
+
+            <div>
+                <label class="form-label">Departamento:</label>
+                <input name="cliente_departamento" 
+                    type="text" 
+                    class="form-control"
+                    value="<%= cliente.departamento %>" />
+            </div>
+
             <div>
                 <label class="form-label">Estado:</label>
-                <input name="banner_estado" 
-                    type="text" 
-                    class="form-control"
-                    value="<%= banner.estado %>" />
+
+
+                <select name="juego_estado_id" class="form-select">
+                    <option value="-1">---------Selecciones una opcion---------</option>
+                    <option value="<%= cliente.estado %>"> pendiente de validación </option>
+                    <option value="<%= cliente.estado %>"> validado </option>
+                    <option value="<%= cliente.estado %>"> dado de baja </option>
+                </select>
+
             </div>
 
             <button type="submit" class="btn btn-success">Guardar</button>
@@ -47,3 +101,4 @@
         <%- include('footer') %>
     </body>
 </html>
+
