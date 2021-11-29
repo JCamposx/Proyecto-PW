@@ -11,18 +11,22 @@ router.get('/juegos/filtrar/:codigo', async (req, res) => {
         }
     })
 
-    const partidas = await db.Partida.findAll({
-        where :{
-            id : idJuego
-        }
-    })
+	const partidas = await db.Partida.findAll({
+		where : {
+			id_juego : idJuego
+		}
+	})
 
-    for (partida of partidas) {
+    console.log(partidas)
+
+	for (let partida of partidas) {
 		const equipoLocal = await db.Equipo.findOne({
 			where : {
 				id : partida.id_local
 			}
 		})
+
+        console.log(equipoLocal.nombre)
 
 		const equipoVisita = await db.Equipo.findOne({
 			where : {
@@ -34,10 +38,11 @@ router.get('/juegos/filtrar/:codigo', async (req, res) => {
 		partida.visitante = equipoVisita.nombre
 	}
 
+	console.log(partida)
+
     res.render('juegos_filter', {
         juego : juego,
         partidas : partidas
-        
     })
 })
 
