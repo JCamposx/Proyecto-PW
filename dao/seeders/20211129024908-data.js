@@ -538,6 +538,60 @@ module.exports = {
 			updatedAt: new Date()
 		}
 	])
+
+	await queryInterface.bulkInsert('Cliente', [
+		{
+			dni:'94858350',
+			nombre: 'Jose',
+			apellidos:'Diaz',
+			foto:'aaa.jpg',
+			correo:'example@example.com',
+			contraseña:'$2a$05$4ZG3DlnzUtthI0vO4Czhbu7r2taQ6zbWCsAHU0BrUBRJKI.bzzXhO',
+			esPEP:'1',
+			telefono:'483849583',
+			estado:'1',
+			direccion:'ejemplo ejemplo ejemplo 123',
+			distrito:'Ate',
+			provincia:'Lima',
+			departamento:'Lima',
+			createdAt: new Date(),
+			updatedAt: new Date()
+		},
+		{
+			dni:'39285068',
+			nombre: 'Rafael',
+			apellidos:'Alvarez',
+			foto:'bbb.jpg',
+			correo:'example1@example.com',
+			contraseña:'$2a$05$X9w2x6W4BS.aXKsVTbD4xeTjddCUnHvLVSoUHEz7/qERyvRBPy766',
+			esPEP:'1',
+			telefono:'294050603',
+			estado:'1',
+			direccion:'ejemplo ejemplo ejemplo 223',
+			distrito:'Surco',
+			provincia:'Lima',
+			departamento:'Lima',
+			createdAt: new Date(),
+			updatedAt: new Date()
+		},
+		{
+			dni:'38274957',
+			nombre: 'Daniel',
+			apellidos:'Zegarra',
+			foto:'ccc.jpg',
+			correo:'example2@example.com',
+			contraseña:'$2a$05$IAbRRpt.SrP4/VzFza/uleoBIaWnhJknDvQ6TSYu7/kTxBlf1yCN2',
+			esPEP:'0',
+			telefono:'392840596',
+			estado:'0',
+			direccion:'ejemplo ejemplo ejemplo 133',
+			distrito:'Huanchaco',
+			provincia:'Trujillo',
+			departamento:'La Libertad',
+			createdAt: new Date(),
+			updatedAt: new Date()
+		}
+	])
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -554,5 +608,6 @@ module.exports = {
 	 await queryInterface.bulkDelete('Partida', null, {})
 	 await queryInterface.bulkDelete('Partida_Equipo', null, {})
 	 await queryInterface.bulkDelete('Banner', null, {})
+	 await queryInterface.bulkDelete('Cliente', null, {})
   }
 };

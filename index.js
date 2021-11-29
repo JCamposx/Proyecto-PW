@@ -2,6 +2,8 @@ const express = require('express')
 const session = require('express-session')
 const bodyParser = require('body-parser')
 const route = require('./routes/routes')
+const bcrypt = require("bcryptjs")
+
 
 const PORT = 5000
 const app = express()
