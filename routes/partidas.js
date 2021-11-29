@@ -7,7 +7,7 @@ const db = require('../dao/models')
 router.get('/partidas', async (req, res) => {
 	const partidas = await db.Partida.findAll({
 		order: [
-			['fecha']
+			['fecha', 'desc']
 		]
 	})
 
