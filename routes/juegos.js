@@ -7,7 +7,7 @@ router.get('/juegos', async (req, res)=> {
     
     const juegos = await db.Juego.findAll({
         order : [
-            ['id', 'DESC']
+            ['id']
         ]
     });    
     console.log(juegos)
@@ -21,7 +21,7 @@ router.get('/juegos', async (req, res)=> {
             categoriaNombre  : categoria.nombre_cat
         })
     }*/
-
+/*
     const nuevaListaJuegos = juegos.map( async (juego)=>{
         const categoria = await juego.getCategoria()
         
@@ -31,11 +31,21 @@ router.get('/juegos', async (req, res)=> {
                 categoriaNombre : categoria.nombre_cat
         }
     })
+*/
 
-    console.log("lista",nuevaListaJuegos)
+for (let juego of juegos) {
+    const categoria = await db.Categoria.findOne({
+        where: {
+            id: juego.id_categoria
+        }
+    })
+
+    juego.nombre_categoria = categoria.nombre_cat
+}
+
     
     res.render('juegos', {
-        juegos : nuevaListaJuegos
+        juegos : juegos
     })
 })
 
