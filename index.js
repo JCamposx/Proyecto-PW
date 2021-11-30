@@ -1,43 +1,43 @@
 const express = require('express')
 const session = require('express-session')
 const bodyParser = require('body-parser')
-const db = require('./dao/models')
-const ejs=require('ejs')
-const { Client } = require('pg')
-const path= require('path')
+
 const PORT = 5000
 const app = express()
 
-
-app.use(express.static('assets'))
-app.use(session({
-	secret: 'pw-123',
-	resave: false,
-	saveUninitialized: false
-}))
+//const db = require('./dao/models')
+//const ejs=require('ejs')	
+//const { Client } = require('pg')
+//const path= require('path')
+//const { get } = require('http')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
 	extended: true
 }))
 
-app.set('view engine', 'ejs')
-//el tradicional path join
 app.use(express.static('assets'))
+app.set('view engine', 'ejs')// el tradicional path join
+app.use(session({
+	secret: 'pw-123',
+	resave: false,
+	saveUninitialized: false
+}))//se configura al servidor trabajar con sesiones 
+
 
 ////////////////////////////////////////////////////////////////////////////////////////
 //se creo el acceso al login
-//ya se puso script para corroborar contra y username , pero falta  compararlo a la db 
-app.get('/', (req, res) => {
-	res.render('login')
-})
+//esto tbm se modifico recien, ya se puso script para corroborar contra y username , pero falta  compararlo a la db 
+//app.get('/', (req, res) => {
+//	res.render('login')
+//})
 
-//aqui el post funciona pero con scripts , falta la db
-app.post('/login',(req,res)=>{
-	db.Cliente.create({
+//esto se modifico recien, aqui el post funciona pero con scripts , falta la db
+//app.post('/login',(req,res)=>{
+//	db.Cliente.create({
 
-	})
-	res.render('admin_menu')	
-})
+//	})
+//	res.render('admin_menu')	
+//})
 
 //redirecciona a menu cuando entra con el login
 // app.get('/menu',(req,res)=>{
@@ -57,9 +57,11 @@ app.post('/login',(req,res)=>{
 // })
 // //cada que le das click a categoria te redireccion a una pagina
 
-app.get('/categorias',(req,res)=>{
-	res.render('categorias')
-})
+//modifoc recien ---- app.get('/categorias',(req,res)=>{
+//	res.render('categorias')
+//})
+
+
 //cada que le das click a juegos te redireccion a una pagina
 // app.get('/juegos',(req,res)=>{
 // 	res.render('juegos')
@@ -69,17 +71,56 @@ app.get('/categorias',(req,res)=>{
 // 	res.render('partidas')
 // })
 //cada que entras como cliente te redireccion a una pagina
-app.get('/cliente/historial', async (req,res)=>{
-	//mostrar todas las apuestas - admnin
-	const apuestas = await db.Apuesta.findAll({
-		where: {
-			id_cliente: req.session.id_cliente
-		}
-	})
 
-	res.render('cliente_historial',{
-		apuestas: apuestas
-	})
+
+
+//*se comento recien
+//app.get('/cliente/historial', async (req,res)=>{
+	//mostrar todas las apuestas - admnin
+//	const apuestas = await db.Apuesta.findAll({
+//		where: {
+//			id_cliente: req.session.id_cliente
+//		}
+//	})
+
+//	res.render('cliente_historial',{
+//		apuestas: apuestas
+//	})
+//})
+
+//
+
+app.get('/', (req,res)=>{
+})
+
+app.get('/cliente_menu',(req,res)=>{
+	console.log('username', req.session.username)
+	res.render('cliente_menu')
+})
+
+
+//Para logearse 
+app.get('/login', (req, res) => {
+	if(req.session.username != undefined){
+		res.redirect('/cliente_menu')
+	}
+	else{
+		res.render('login')
+	}
+})
+
+//post
+app.post('/login',(req,res)=>{
+	const username = req.body.username
+	const password = req.body.password
+
+	if(username == "pw" && password=="123"){
+		//login correcto 
+		req.session.username = username //guardando la varibale en sesion
+		res.redirect('/cliente_menu')
+	}else{
+		res.redirect('/login')
+	}
 })
 
 ////////////////////////////////////////////////////////////////////////////////////////
