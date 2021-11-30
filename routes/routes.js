@@ -24,8 +24,19 @@ router.use(require('./clientes_modificar'))
 router.use(require('./clientes_listar'))
 ///////////////////////////////////////////
 
+router.use(require('./partidas_editar'))
+router.use(require('./partidas_nuevo'))
+router.use(require('./partidas'))
+///////////////////////////////////////////
+
+router.use(require('./ClientesNew'))
+router.use(require('./Esperar'))
+
 router.get('/', (req, res) => {
-	res.send('HOLA MUNDO')
+	res.render('index')
 })
+	
+router.use(require('./cliente'))
+router.use(require('./menu'))
 
 module.exports = router

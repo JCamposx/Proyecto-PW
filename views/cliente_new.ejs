@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<link rel="stylesheet" href="/css/index.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+        <script>
+            var Departamento = {
+              "Lima": {
+                 "Lima":["Lima","Ate","Surco"],
+                 "Barranca":["Barranca","Paramonga","Supe"],
+                 "Cañete":["San Luis","Chilca","Cerro Azul"]
+
+              },
+              "La Libertad": {
+                "Trujillo":["Trujillo","Huanchaco","Laredo"],
+                "Bolivar":["Bolivar","Longotea","Ucuncha"],
+                "Pacasmayo":["Pacasmayo","Guadalupe","San José"]
+              },
+              "Ica":{
+                "Ica":["Ica","Los Aquijes","Pueblo Nuevo"],
+                "Pisco":["Pisco","Huancano","Paracas"],
+                "Nazca":["Nazca","Marcona","Changuillo"]
+              }
+            }
+            window.onload = function() {
+                
+              let DepSel = document.getElementById("cliente_departamento");
+              let ProvSel = document.getElementById("cliente_provincia");
+              let DistSel = document.getElementById("cliente_distrito");
+              for (let x in Departamento) {
+                DepSel.options[DepSel.options.length] = new Option(x, x);
+              }
+              DepSel.onchange = function() {
+                //empty Chapters- and Topics- dropdowns
+                DistSel.length = 1;
+                ProvSel.length = 1;
+                //display correct values
+                for (let y in Departamento[this.value]) {
+                  ProvSel.options[ProvSel.options.length] = new Option(y, y);
+                }
+              }
+              ProvSel.onchange = function() {
+                //empty Chapters dropdown
+                DistSel.length = 1;
+                //display correct values
+                z=Departamento[DepSel.value][this.value];
+                for (i=0;i<z.length;i++) {
+                  DistSel.options[DistSel.options.length] = new Option(z[i], z[i]);
+                }
+              }
+              for(i=2;i<6;i++){
+                        let x = document.getElementById(i);
+                        x.style.display="none";
+                    }
+            }
+
+
+                showTab= function (a,b) {
+	                let x=document.getElementById(a);
+                    let y=document.getElementById(b);
+                    x.style.display="none";
+                    y.style.display="block";
+
+                }
+                VerificarVacio=function(a,b,c){
+                    let cont=0;
+                        for(i=1;i<=c;i++){
+                            let z=document.getElementById(a+"div"+c).value;
+                            if(z==""){
+                                cont++;
+                            }
+                        }
+                        if(cont!=0){
+                            alert("No todos los campos están rellenados");
+                        }
+                        else{
+                            showTab(a,b)
+                        }
+                }
+                VerificarCont=function(){
+                    let pass=document.getElementById("pass").value;
+                    let conf=document.getElementById("conf").value;
+                    if(pass!=conf){
+                        alert("La contraseña y su confirmación deben ser iguales");
+                    }
+                    else if(pass=="" || conf==""){
+                        alert("No todos los campos están rellenados")
+                    }
+                    else{
+                        VerificarVacio(3,4,2);
+                    }
+                }
+
+            </script>
+
+    </head>
+    <header>        <h1>Registración</h1>
+    </header>
+    <body class="container">
+        <form method="post" action="/cliente/new">
+    <div id=1>
+        <h2>Paso 1</h2>
+            <div>
+                <label class="form-label">Nombre:</label>
+                <input name="cliente_nombre" type="text" class="form-control" id="1div1"/>
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Apellido:</label>
+                <input name="cliente_apellido" type="text" class="form-control"id="1div2"/>
+            </div>
+            <a href="#" class="btn btn-success"onclick="VerificarVacio(1,2,2)">Siguiente</a>
+        </div>
+        
+        <div id=2>
+        <h2>Paso 2</h2>
+            <div>
+                <label class="form-label">DNI:</label>
+                <input name="cliente_DNI" type="text" class="form-control" id="2div1"/>
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Foto:</label>
+                <input name="cliente_foto" type="file" class="form-control" id="2div2"/>
+            </div>
+            <a href="#" class="btn btn-success"onclick="showTab(2,1)">Anterior</a>
+            <a href="#" class="btn btn-success"onclick="VerificarVacio(2,3,2)">Siguiente</a>
+
+        </div>
+
+        <div id=3>
+
+        <h2>Paso 3</h2>
+            <div>
+                <label class="form-label">Correo Electrónico:</label>
+                <input name="cliente_correo" type="text" class="form-control" id="3div1"/>
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Contraseña:</label>
+                <input name="cliente_contraseña" type="password" class="form-control" id="pass"/>
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Confirmar Contraseña:</label>
+                <input name="cliente_confcontraseña" type="password" class="form-control" id="conf"/>
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Teléfono:</label>
+                <input name="cliente_telefono" type="text" class="form-control" id="3div2"/>
+            </div>
+            <a href="#" class="btn btn-success"onclick="showTab(3,2)">Anterior</a>
+            <a href="#" class="btn btn-success"onclick="VerificarCont()">Siguiente</a>       
+		</div>
+
+    <div id=4>
+        <h2>Paso 4</h2>
+        
+            <div>
+                Departamento:
+                <br><br>
+                <select name="cliente_departamento" id="cliente_departamento">
+                    <option value="">----Selecionar Departamento ----</option>
+                </select>
+            </div>
+            <div class="mb-2">
+                Provincia:
+                <br><br>
+                <select name="cliente_provincia" id="cliente_provincia">
+                    <option value="">----Selecionar Provincia ----</option>
+                </select>
+            </div>
+            <div class="mb-2">
+                Distrito:
+                <br><br>
+                <select name="cliente_distrito" id="cliente_distrito">
+                    <option value="">----Selecionar Distrito ----</option>
+                </select>
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Direccion:</label>
+                <input name="cliente_direccion" type="text" class="form-control" id="4div1"/>
+            </div>
+            <a href="#"class="btn btn-success" onclick="showTab(4,3)">Anterior</a>
+            <a href="#"class="btn btn-success" onclick="VerificarVacio(4,5,1)">Siguiente</a>
+    </div>
+
+    <div id=5>
+        <h2>Paso 5</h2>
+            <div>
+                <label">¿Es persona políticamente expuesta?:</label>
+                <input name="cliente_PEP" type="checkbox"/>
+            </div>
+            <a href="#" onclick="showTab(5,4)"class="btn btn-success">Anterior</a>
+            <button type="submit" class="btn btn-success">Guardar</button>
+            
+    </div>
+</form>
+<%- include('footer') %>
+
+    </body>
+
+
+
+</html>
