@@ -1,11 +1,11 @@
 const express = require('express')
 const session = require('express-session')
 const bodyParser = require('body-parser')
+const db = require('./dao/models')
 
 const PORT = 5000
 const app = express()
 
-//const db = require('./dao/models')
 //const ejs=require('ejs')	
 //const { Client } = require('pg')
 //const path= require('path')
@@ -73,30 +73,39 @@ app.use(session({
 //cada que entras como cliente te redireccion a una pagina
 
 
-
-//*se comento recien
-//app.get('/cliente/historial', async (req,res)=>{
-	//mostrar todas las apuestas - admnin
-//	const apuestas = await db.Apuesta.findAll({
-//		where: {
-//			id_cliente: req.session.id_cliente
-//		}
-//	})
-
-//	res.render('cliente_historial',{
-//		apuestas: apuestas
-//	})
-//})
-
-//
-
 app.get('/', (req,res)=>{
+})
+
+//cada que entras como cliente y das clic en historial
+app.get('/historial', async (req,res)=>{
+	//mostrar todas las apuestas
+	const apuestas = await db.Apuesta.findAll()
+	//	{
+	//where: {
+	//		id_cliente: req.session.id_cliente
+	//	}
+	//})
+
+	res.render('cliente_historial',{
+		apuestas: apuestas
+	})
 })
 
 app.get('/cliente_menu',(req,res)=>{
 	console.log('username', req.session.username)
 	res.render('cliente_menu')
 })
+
+
+app.get('/partidas', async (req,res)=>{
+	//Obtener partidas de la base de datos 
+	const partidas = await db.Partida.findAll();
+	console.log(partidas);
+	res.render('partidas', {
+		partidas : partidas
+	})
+})
+
 
 
 //Para logearse 
