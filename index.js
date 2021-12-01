@@ -39,10 +39,6 @@ app.use(session({
 //	res.render('admin_menu')	
 //})
 
-//redirecciona a menu cuando entra con el login
-// app.get('/menu',(req,res)=>{
-// 	res.render('menu')
-// })
 
 //redireccion al menu de cliente
 // app.get('/menucliente',async(req,res)=>{
@@ -113,6 +109,12 @@ app.get('/capuestas', async (req,res)=>{
 	})
 })
 
+
+//Guardar apuesta elegida por el cliente
+//app.post('/partidas/apuestas', (req,res)=>{
+//	if()
+//})
+
 //Para logearse 
 app.get('/login', (req, res) => {
 	if(req.session.username != undefined){
@@ -122,6 +124,18 @@ app.get('/login', (req, res) => {
 		res.render('login')
 	}
 })
+
+//Eliminar una Apuesta
+//app.get('/apuestas/eliminar/:codigo', async (req,res)=>{
+	//const idAPuesta = req.params.codigo
+	//await db.Apuesta.destroy({
+	//	where : {
+	//		id : idAPuesta
+	//	}
+	//})
+	//res.redirect('/capuesta')
+//})
+
 
 //post
 app.post('/login',(req,res)=>{
