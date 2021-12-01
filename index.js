@@ -76,6 +76,11 @@ app.use(session({
 app.get('/', (req,res)=>{
 })
 
+app.get('/cliente_menu',(req,res)=>{
+	console.log('username', req.session.username)
+	res.render('cliente_menu')
+})
+
 //cada que entras como cliente y das clic en historial
 app.get('/historial', async (req,res)=>{
 	//mostrar todas las apuestas
@@ -89,11 +94,6 @@ app.get('/historial', async (req,res)=>{
 	res.render('cliente_historial',{
 		apuestas: apuestas
 	})
-})
-
-app.get('/cliente_menu',(req,res)=>{
-	console.log('username', req.session.username)
-	res.render('cliente_menu')
 })
 
 
