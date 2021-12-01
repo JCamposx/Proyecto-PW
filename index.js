@@ -39,10 +39,6 @@ app.use(session({
 //	res.render('admin_menu')	
 //})
 
-//redirecciona a menu cuando entra con el login
-// app.get('/menu',(req,res)=>{
-// 	res.render('menu')
-// })
 
 //redireccion al menu de cliente
 // app.get('/menucliente',async(req,res)=>{
