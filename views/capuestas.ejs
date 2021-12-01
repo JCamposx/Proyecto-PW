@@ -26,20 +26,39 @@
               </thead>
               <tbody>
                   <tr>
-                      <th scope="row"></th>
-                      <td></td>
-                      <td></td>
-                      <td>12</td>
+                      <% apuestas.forEach(apuesta => { %>
+                      <th scope="row"><%= apuesta.id %></th>
+                      <td><%= apuesta.partida_id %></td>
+                      <td><%= apuesta.EquipoApostado() %></td>
+                      <!--Factor-->
                       <td>
-                          <input id="montoApos" type="number" min="0"/>
-                          <button type="button" class="btn btn-dark">Calcular</button>
+                        <input id="factor" type="number" min="0" disabled value="12" disabled oninput="c();">
                       </td>
-                      <td><!--Ganancia posible-->
+                      <!--Monto Apostado-->
+                      <td>
+                          <input id="monto" type="number" min="0" oninput="c();" />
+                          
                       </td>
+                      <!--Ganancia Posible-->
+                      <td><!--Ganancia posible  Factor x M;onto = Ganancia posible -->
+                        <input id="ganancia" type="number" min="0" disabled>
+                      </td>
+                      <script>
+                          function c() 
+                        {
+                            var f = document.getElementById('factor').value; 
+                            var m = document.getElementById('monto').value;
+                            var g = document.getElementById('ganancia'); 
+                            var g = f * m;
+                            document.getElementById('ganancia').value = g;
+                        }
+                      </script>
+                     
                       <td><!--Acciones-->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                             Confirmar
                         </button>
+                      
                         <!-- Modal -->
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -52,13 +71,14 @@
                                     ¿Estas Seguro?
                                 </div>
                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Confirmar</button>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Confirmar</button>
+                              
                                 </div>
                             </div>
                         </div>
                         </div>
-                        <button type="button" class="btn btn-primary">Confirmar</button>
+                        
                       </td>
                   </tr>
               </tbody>
