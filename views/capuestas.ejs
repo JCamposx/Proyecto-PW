@@ -32,7 +32,7 @@
                       <td><%= apuesta.EquipoApostado() %></td>
                       <!--Factor-->
                       <td>
-                        <input id="factor" type="number" min="0" disabled value="12" disabled oninput="c();">
+                        <h1><input id="factor" type="number" min="0" disabled value="" disabled oninput="c();"><%= apuesta.Factor() %></h1>
                       </td>
                       <!--Monto Apostado-->
                       <td>
@@ -40,7 +40,7 @@
                           
                       </td>
                       <!--Ganancia Posible-->
-                      <td><!--Ganancia posible  Factor x M;onto = Ganancia posible -->
+                      <td><!--Ganancia posible  Factor x Monto = Ganancia posible -->
                         <input id="ganancia" type="number" min="0" disabled>
                       </td>
                       <script>
@@ -58,7 +58,6 @@
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                             Confirmar
                         </button>
-                      
                         <!-- Modal -->
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -66,19 +65,19 @@
                                 <div class="modal-header">
                                 <h5 class="modal-title" id="staticBackdropLabel">Confirmación</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                ¿Estas Seguro?
                                 </div>
-                                <div class="modal-body">
-                                    ¿Estas Seguro?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Confirmar</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                              
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Confirmar</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        </div>
-                        
+                        <button type="button" class="btn btn-primary">Cancelar</button>
+                        <% })%>
                       </td>
                   </tr>
               </tbody>
