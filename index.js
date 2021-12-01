@@ -113,7 +113,6 @@ app.get('/capuestas', async (req,res)=>{
 	})
 })
 
-
 //Para logearse 
 app.get('/login', (req, res) => {
 	if(req.session.username != undefined){

@@ -39,10 +39,17 @@
 							<td><%= partidas.factor_local %></td>
 							<td><%= partidas.factor_empate %></td>
 							<td><%= partidas.factor_visita %></td>
+							<td>
+								<select class="form-select form-select-sm" aria-label=".form-select-sm example">
+									<option selected>select menu</option>
+ 										<option value="1">Factor Local</option>
+										<option value="2">Factor Empate</option>
+										<option value="3">Factor Visita</option>
+								</select>
+							</td>
 						</tr>
 					<% })%>
 				</tbody>
-
 			</table>	
 		</div>
 
