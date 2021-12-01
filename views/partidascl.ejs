@@ -27,13 +27,14 @@
 					<td>Factor Local</td>
 					<td>Factor Empate</td>
 					<td>Factor Visita</td>
+					<td>Opción a Apostar</td>
 				</thead>
 				<tbody>
 					<% partidas.forEach((partidas) => { %>
 						<tr>
 							<th scope="row"><%= partidas.id_local %></th>
 							<td><%= partidas.id_local %> vs <%= partidas.id_visita %> </td>
-							<td><%= partidas.fecha %></td>
+							<td><%= partidas.fecha.toLocaleDateString('es-PEss') %></td>
 							<td><%= partidas.hora_inicio %></td>
 							<td><%= partidas.duracion %></td>
 							<td><%= partidas.factor_local %></td>
