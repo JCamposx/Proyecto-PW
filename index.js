@@ -82,7 +82,7 @@ app.get('/cliente_menu',(req,res)=>{
 })
 
 //cada que entras como cliente y das clic en historial
-app.get('/historial', async (req,res)=>{
+app.get('/cliente_historial', async (req,res)=>{
 	//mostrar todas las apuestas
 	const apuestas = await db.Apuesta.findAll()
 	//	{
@@ -97,15 +97,21 @@ app.get('/historial', async (req,res)=>{
 })
 
 
-app.get('/partidas', async (req,res)=>{
+app.get('/partidascl', async (req,res)=>{
 	//Obtener partidas de la base de datos 
 	const partidas = await db.Partida.findAll();
-	console.log(partidas);
-	res.render('partidas', {
+	//console.log(partidas);
+	res.render('partidascl', {
 		partidas : partidas
 	})
 })
 
+app.get('/capuestas', async (req,res)=>{
+	const apuestas = await db.Apuesta.findAll()
+	res.render('capuestas',{
+		apuestas : apuestas
+	})
+})
 
 
 //Para logearse 
