@@ -42,10 +42,10 @@
 							<td><%= partidas.factor_visita %></td>
 							<td>
 								<select class="form-select form-select-sm" aria-label=".form-select-sm example">
-									<option selected>select menu</option>
- 										<option id="fl" value="1">Factor Local</option>
-										<option id="fe" value="2">Factor Empate</option>
-										<option id="fv" value="3">Factor Visita</option>
+										<option value="-1">----- seleccione una opción ----- </option>
+ 										<option value="<% partidas.id %>">Factor Local</option>
+										<option value="<% partidas.id %>">Factor Empate</option>
+										<option value="<% partidas.id %>">Factor Visita</option>
 								</select>
 							</td>
 						</tr>

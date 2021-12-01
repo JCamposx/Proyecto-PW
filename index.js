@@ -25,50 +25,6 @@ app.use(session({
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
-//se creo el acceso al login
-//esto tbm se modifico recien, ya se puso script para corroborar contra y username , pero falta  compararlo a la db 
-//app.get('/', (req, res) => {
-//	res.render('login')
-//})
-
-//esto se modifico recien, aqui el post funciona pero con scripts , falta la db
-//app.post('/login',(req,res)=>{
-//	db.Cliente.create({
-
-//	})
-//	res.render('admin_menu')	
-//})
-
-
-//redireccion al menu de cliente
-// app.get('/menucliente',async(req,res)=>{
-// 	const juegos = await db.Juego.findAll()
-// 	res.render('cliente_menu',{juegos:juegos})
-// })
-
-
-// //cada que le das click a banner te redireccion a una pagina
-// app.get('/banners',(req,res)=>{
-// 	res.render('banners')
-// })
-// //cada que le das click a categoria te redireccion a una pagina
-
-//modifoc recien ---- app.get('/categorias',(req,res)=>{
-//	res.render('categorias')
-//})
-
-
-//cada que le das click a juegos te redireccion a una pagina
-// app.get('/juegos',(req,res)=>{
-// 	res.render('juegos')
-// })
-//cada que le das click a partidas te redireccion a una pagina
-// app.get('/partidas',(req,res)=>{
-// 	res.render('partidas')
-// })
-//cada que entras como cliente te redireccion a una pagina
-
-
 app.get('/', (req,res)=>{
 })
 
@@ -86,7 +42,6 @@ app.get('/cliente_historial', async (req,res)=>{
 	//		id_cliente: req.session.id_cliente
 	//	}
 	//})
-
 	res.render('cliente_historial',{
 		apuestas: apuestas
 	})
@@ -109,12 +64,6 @@ app.get('/capuestas', async (req,res)=>{
 	})
 })
 
-
-//Guardar apuesta elegida por el cliente
-//app.post('/partidas/apuestas', (req,res)=>{
-//	if()
-//})
-
 //Para logearse 
 app.get('/login', (req, res) => {
 	if(req.session.username != undefined){
@@ -124,17 +73,6 @@ app.get('/login', (req, res) => {
 		res.render('login')
 	}
 })
-
-//Eliminar una Apuesta
-//app.get('/apuestas/eliminar/:codigo', async (req,res)=>{
-	//const idAPuesta = req.params.codigo
-	//await db.Apuesta.destroy({
-	//	where : {
-	//		id : idAPuesta
-	//	}
-	//})
-	//res.redirect('/capuesta')
-//})
 
 
 //post
