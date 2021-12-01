@@ -47,7 +47,6 @@ app.get('/cliente_historial', async (req,res)=>{
 	})
 })
 
-
 app.get('/partidascl', async (req,res)=>{
 	//Obtener partidas de la base de datos 
 	const partidas = await db.Partida.findAll();
@@ -88,6 +87,11 @@ app.post('/login',(req,res)=>{
 		res.redirect('/login')
 	}
 })
+
+app.get('/nosotros', (req,res)=>{
+	res.render('nosotros')
+})
+
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
